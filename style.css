@@ -4,12 +4,16 @@ html {
   min-height: 100%;
   font-family: "Roboto", sans-serif;
 }
-
+img{
+	
+	padding-left: 20px;
+	padding-top: 20px;
+}
 .title {
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 30px;
-  color: #FF8F00;
+  color: #18515E;
   font-weight: 300;
   font-size: 24px;
   letter-spacing: 1px;
@@ -39,6 +43,12 @@ input[type="email"]:focus {
 
 input[type="radio"] {
   margin-right: 10px;
+	display: inline;
+}
+
+radio {
+	display: inline;
+	
 }
 
 label {
@@ -60,7 +70,7 @@ label:first-child {
 .rerun-button {
   padding: 10px 20px;
   border-radius: 3px;
-  background: #FF6F00;
+  background: #18515E;
   color: white;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -116,7 +126,7 @@ label:first-child {
 }
 .modal-header span.is-active {
   background: rgba(0, 0, 0, 0.4);
-  background: #FF8F00;
+  background: #18515E;
 }
 
 .modal-bodies {
@@ -127,7 +137,7 @@ label:first-child {
 
 .modal-body {
   background: white;
-  padding: 40px 100px;
+  padding: 40px 40px;
   box-shadow: 0px 50px 30px -30px rgba(0, 0, 0, 0.3);
   margin-bottom: 50px;
   position: absolute;
