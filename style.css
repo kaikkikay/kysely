@@ -4,6 +4,10 @@ html {
   min-height: 100%;
   font-family: "Roboto", sans-serif;
 }
+
+#charNum {
+	font-size: 12px;
+}
 img{
 	
 	padding-left: 20px;
