@@ -17,7 +17,7 @@
 <body>
 	
 	<script>
-	$.getJSON("http://kyselyproto.herokuapp.com/kyselyt",
+	$.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kyselyt",
                       function( data ) {
                 
                 var items = [];
@@ -73,7 +73,7 @@
       </form>
     </div>
     <div class="modal-body modal-body-step-2">
-      <div id="lomake" class="title">Yleistä tutortoiminnasta</div>
+      <div  class="title">Yleistä tutortoiminnasta</div>
 		<script>
 		
                
@@ -82,7 +82,7 @@
       
     <form  style="text-align: center">
         <label>
-          
+          <div id="lomake"></div>
           <textarea type="text" id="field" onkeyup="countChar(this)"></textarea>
           
         </label>
