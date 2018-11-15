@@ -7,7 +7,7 @@
   <title>Kysely</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
   
       <link rel="stylesheet" href="style.css">
 
@@ -15,6 +15,49 @@
 </head>
 
 <body>
+	
+	<script>
+	$.getJSON("http://kyselyproto.herokuapp.com/kyselyt",
+                      function( data ) {
+                
+                var items = [];
+                var lomakekentta = [];
+                var kysymys = data.kysymys;
+                
+		$.each(data, function(key, d) {
+                    
+                    items.push(d.kysymys + "<br><input type='text' id="+d.id+"><br>");
+                    lomakekentta.push(d.id);
+                })
+                       
+            $( "<div/>", {
+            html: items.join( "" )}).appendTo("#lomake");
+            });
+		
+			
+    
+            function laheta() {
+            
+            var vastaus;
+            var tunnus;
+                
+                for (i=0; i<lomakekentta.length; i++) {
+                vastaus = document.getElementById(lomakekentta[i]).value;
+                alert("'id':"+lomakekentta[i]+",'vastaus':' "+vastaus+"'");
+                lahetys="'id':"+lomakekentta[i]+",'vastaus':' "+vastaus+"'"
+                var myJSON = JSON.stringify(lahetys);
+                    
+                $.ajax({
+                url: 'https://www.mocky.io/v2/omakoodi',
+                type: 'POST',
+                dataType: 'json',
+                data: jsonData, 
+                success: function() { alert('POST completed. Data:' + myJSON)}
+                });   
+                
+                }
+            }
+	</script>
  <img src="helga_logo.png">
 <div class="modal-wrap">
  <div class="modal-header"><span class="is-active"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
@@ -30,8 +73,12 @@
       </form>
     </div>
     <div class="modal-body modal-body-step-2">
-      <div class="title">Yleistä tutortoiminnasta</div>
-      <div class="description">Millainen oli ensikosketuksesi Helgan tutortoimintaan?</div>
+      <div id="lomake" class="title">Yleistä tutortoiminnasta</div>
+		<script>
+		
+               
+			
+		</script>
       
     <form  style="text-align: center">
         <label>
@@ -80,7 +127,7 @@
       </form>
     </div>
       
-	  <div class="modal-body modal-body-step-5">
+	  <div id="lomake1" class="modal-body modal-body-step-5">
       <div class="title">Kysymys 4</div>
       <div class="description">Oletko kiinnostunut toimimaan Helgan tutorina? Jos, niin miksi?</div>
       <form>
@@ -115,7 +162,7 @@
    
   </div>
 </div>
- <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
 
     <script src="index.js"></script>
 
@@ -132,44 +179,7 @@
         }
       };
 			
-			$.getJSON("http://kyselyproto.herokuapp.com/kyselyt",
-                      function( data ) {
-                
-                var items = [];
-                var lomakekentta = [];
-                var kysymykset = data.kysymykset;
-                
-                $.each(data, function(key, d) {
-                    
-                    items.push(d.kysymys + "<br><input type='text' id="+d.id+"><br>");
-                    lomakekentta.push(d.id);
-                })
-                       
-            $( "<div/>", {
-            html: items.join( "" )}).appendTo("#lomake");
-            });
-    
-            function laheta() {
-            
-            var vastaus;
-            var tunnus;
-                
-                for (i=0; i<lomakekentta.length; i++) {
-                vastaus = document.getElementById(lomakekentta[i]).value;
-                alert("'id':"+lomakekentta[i]+",'vastaus':' "+vastaus+"'");
-                lahetys="'id':"+lomakekentta[i]+",'vastaus':' "+vastaus+"'"
-                var myJSON = JSON.stringify(lahetys);
-                    
-                $.ajax({
-                url: 'https://www.mocky.io/v2/omakoodi',
-                type: 'POST',
-                dataType: 'json',
-                data: jsonData, 
-                success: function() { alert('POST completed. Data:' + myJSON)}
-                });   
-                
-                }
-            }
+			
             
 			
         </script>
