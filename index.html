@@ -17,26 +17,79 @@
 <body>
 	
 	<script>
-	$.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kyselyt",
+	//osio 1
+		$.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kyselyt",
                       function( data ) {
                 
                 var items = [];
                 var lomakekentta = [];
                 var kysymys = data.kysymys;
+				var osio = data.osio;
                 
 		$.each(data, function(key, d) {
-                    
-                    items.push(d.kysymys + "<br><input type='text' id="+d.id+"><br>");
-                    lomakekentta.push(d.id);
+			
+			if (d.osio == "osio1"){
+		   items.push(d.kysymys + "<br><input type='text' id="+d.id+"><br>");
+                   lomakekentta.push(d.id);
+	      }
                 })
+		
+		 
                        
             $( "<div/>", {
-            html: items.join( "" )}).appendTo("#lomake");
+				
+            html: items.join( "" )}).appendTo("#lomake").show();
             });
 		
+		
+		//osio2
+		$.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kyselyt",
+                      function( data ) {
+                
+                var items = [];
+                var lomakekentta = [];
+                var kysymys = data.kysymys;
+				var osio = data.osio;
+                
+		$.each(data, function(key, d) {
 			
-    
-            function laheta() {
+			if (d.osio == "osio2"){
+		   items.push(d.kysymys + "<br><input type='text' id="+d.id+"><br>");
+                   lomakekentta.push(d.id);
+	      }
+                })
+		
+		 
+                       
+            $( "<div/>", {
+				
+            html: items.join( "" )}).appendTo("#lomake1").show();
+            });
+		
+		//osio 3
+		$.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kyselyt",
+                      function( data ) {
+                
+                var items = [];
+                var lomakekentta = [];
+                var kysymys = data.kysymys;
+				var osio = data.osio;
+                
+		$.each(data, function(key, d) {
+			
+			if (d.osio == "osio3"){
+		   items.push(d.kysymys + "<br><input type='text' id="+d.id+"><br>");
+                   lomakekentta.push(d.id);
+	      }
+                })
+		
+		            
+            $( "<div/>", {
+				
+            html: items.join( "" )}).appendTo("#lomake2").show();
+            });
+		
+			function laheta() {
             
             var vastaus;
             var tunnus;
@@ -48,7 +101,7 @@
                 var myJSON = JSON.stringify(lahetys);
                     
                 $.ajax({
-                url: 'https://www.mocky.io/v2/omakoodi',
+                url: 'https://ohjelmistoprojekti-yksi.herokuapp.com/vastaus',
                 type: 'POST',
                 dataType: 'json',
                 data: jsonData, 
@@ -57,12 +110,15 @@
                 
                 }
             }
+    
+           
 	</script>
  <img src="helga_logo.png">
 <div class="modal-wrap">
  <div class="modal-header"><span class="is-active"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
   <div class="modal-bodies">
-    <div class="modal-body modal-body-step-1 is-showing">
+    
+     <div class="modal-body modal-body-step-1 is-showing">
       <div class="title">Helgan tutortoiminnan kehittäminen</div>
       <div class="description">Kyselyn tavoitteena on selvittää, kuinka Helgan tutortoimintaa voitaisiin parantaa.</div>
       <form>
@@ -80,9 +136,9 @@
 			
 		</script>
       
-    <form  style="text-align: center">
+    <form  onsubmit="laheta()" style="text-align: center">
         <label>
-          <div id="lomake"></div>
+          <div id="lomake" data-user="osio2" data-list-size="5"></div>
           <textarea type="text" id="field" onkeyup="countChar(this)"></textarea>
           
         </label>
@@ -97,15 +153,10 @@
     <div class="modal-body modal-body-step-3">
       <div class="title">Ryhmäytyminen</div>
       <div class="description">Kuinka tyytyväinen olet ollut Helgan tutortoimintaan?</div>
-      <form style="text-align: center">
-          <div>
+      <form onsubmit="laheta()" style="text-align: center">
+          <div id="lomake1">
           
-          1 &nbsp;&nbsp;
-          <input type="radio" name="optradio"> 
-          <input type="radio" name="optradio"> 
-          <input type="radio" name="optradio">
-          <input type="radio" name="optradio"> 
-          <input type="radio" name="optradio"> 5
+          
           </div>
           <br><br>
          <div class="text-center fade-in">
@@ -117,20 +168,17 @@
     <div class="modal-body modal-body-step-4">
       <div class="title">Perehdytys</div>
       <div class="description">Missä olisi parantamisen varaa?</div>
-      <form>
-        <label>
-          <textarea type="text" required name="Kysymys3"></textarea>
-        </label>
-        <div class="text-center fade-in">
+      <div id="lomake2" class="text-center fade-in"></div>
+         <form onsubmit="laheta()" >
           <div class="button">Seuraava</div>
-        </div>
+        
       </form>
     </div>
       
-	  <div id="lomake1" class="modal-body modal-body-step-5">
+	  <div id="" class="modal-body modal-body-step-5">
       <div class="title">Kysymys 4</div>
       <div class="description">Oletko kiinnostunut toimimaan Helgan tutorina? Jos, niin miksi?</div>
-      <form>
+      <form onsubmit="laheta()">
         <label>
           <textarea type="text" required name="Kysymys4"></textarea>
         </label>
@@ -143,12 +191,12 @@
       <div class="modal-body modal-body-step-6">
       <div class="title">Kysymys 5</div>
       <div class="description">Millaisessa tilanteessa olet tarvinnut tutorilta apua?</div>
-      <form>
+      <form onsubmit="laheta()">
         <label>
           <textarea type="text" required name="Kysymys5"></textarea>
         </label>
         <div class="text-center fade-in">
-          <div class="button">Lähetä</div>
+          <input type="submit" value="Submit">
         </div>
       </form>
     </div>
@@ -168,7 +216,8 @@
 
   <!-- JSON -->
         <script>
-            
+             
+			
            
             function countChar(val) {
         var len = val.value.length;
