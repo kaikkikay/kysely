@@ -24,14 +24,15 @@
 </head>
 
 <body>
-	
-	<script>
+		<script>
 	//osio 1
+        
+        var lomakekentta = [];
 		$.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset",
                       function( data ) {
                 
                 var items = [];
-                var lomakekentta = [];
+                
                 var kysymys = data.kysymys;
 				
                 
@@ -57,23 +58,103 @@
                    lomakekentta.push(d.id);
 	      }
                 })
-		
-		 
-                       
+       
             $( "<div/>", {
 				
             html: items.join( "" )}).appendTo("#lomake").show();
-            });
-		
-		
-	
+            }); 
+        
+        /* osio 2
+        $.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset",
+                      function( data ) {
+                
+                var items = [];
+                
+                var kysymys = data.kysymys;
+				
+                
+		$.each(data, function(key, d) {
 			
-    
-           
+			if (d.tyyppi=="text") {
+        items.push(d.kysymys + "<br><input type="+d.tyyppi+ " id="+d.id+" ><br>");
+        lomakekentta.push(d.id);
+        }
+            
+        if (d.tyyppi=="radio" || d.tyyppi=="checkbox") { 
+        items.push("<br>" + d.kysymys + ":<br>");
+            for (i = 0; i < d.value.length; i++) {
+                items.push("<input type="+d.tyyppi+ " id="+d.id+" name=" + d.id+ " value="+d.value[i]+" >" +d.value[i]+"<br>");
+                
+            }lomakekentta.push(d.id);
+        }
+        
+			
+			
+			if (d.osio == "osio2"){
+		   items.push(d.kysymys + "<br><input type='text' id="+d.id+"><br>");
+                   lomakekentta.push(d.id);
+	      }
+                })
+       
+            $( "<div/>", {
+				
+            html: items.join( "" )}).appendTo("#lomake1").show();
+            });     */
+        
+         
+        
+        
+        
+        
+			function laheta() {
+
+
+    var tyyppi;
+    var vastaus;
+
+    for (i = 0; i < lomakekentta.length; i++) {
+        tyyppi = document.getElementById(lomakekentta[i]).type;
+        var radios = document.getElementsByName(lomakekentta[i]);
+        var checkbox = document.getElementsByName(lomakekentta[i]);
+        
+        
+
+        if (tyyppi == "text" || tyyppi == "textarea") {
+            vastaus = document.getElementById(lomakekentta[i]).value;
+            lahetys = "Vastaus: " + vastaus;
+            alert(lahetys);
+        }
+
+
+        if (tyyppi == "radio") {
+            for (var x = 0, length = radios.length; x < length; x++) {
+                if (radios[x].checked) {
+                    vastaus = radios[x].value;
+                    lahetys = "Kysymys: " + lomakekentta[i] + ", Vastaus: " + vastaus;
+                   
+                }
+            }
+        }
+
+        if (tyyppi == "checkbox") {
+            for (var x = 0, length = checkbox.length; x < length; x++) {
+
+                if (checkbox[x].checked) {
+                    vastaus = checkbox[x].value;
+                    lahetys = "Kysymys: " + lomakekentta[i] + ", Vastaus: " + vastaus;
+                   
+                }
+            }
+        }
+
+
+    }
+}
+        
 	</script>
  <img src="helga_logo.png">
 <div class="modal-wrap">
- <div class="modal-header"><span class="is-active"></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+ <div class="modal-header"><span class="is-active"></span><span></span><span></span><span></span><span></span></div>
   <div class="modal-bodies">
     
      <div class="modal-body modal-body-step-1 is-showing">
@@ -97,20 +178,20 @@
     <form  onsubmit="laheta()" style="text-align: center">
         <label>
           <div id="lomake" data-user="osio2" data-list-size="5"></div>
-          <textarea type="text" id="field" onkeyup="countChar(this)"></textarea>
-          
+        <!---- <textarea type="text" id="field" onkeyup="countChar(this)"></textarea> 
+          <div id="charNum"></div> -->
         </label>
-   			 <div id="charNum"></div>
+   			 
         <br><br>
         <div class="text-center fade-in">
-          <div class="button">Seuraava</div>
+          <div class="button" onClick="laheta()">Seuraava</div>
         </div>
       </form>
     </div>
     
     <div class="modal-body modal-body-step-3">
       <div class="title">Ryhmäytyminen</div>
-      <div class="description">Kuinka tyytyväinen olet ollut Helgan tutortoimintaan?</div>
+      <div class="description"></div>
       <form onsubmit="laheta()" style="text-align: center">
           <div id="lomake1">
           
@@ -124,16 +205,17 @@
     </div>
       
     <div class="modal-body modal-body-step-4">
-      <div class="title">Perehdytys</div>
-      <div class="description">Missä olisi parantamisen varaa?</div>
-      <div id="lomake2" class="text-center fade-in"></div>
+      <div class="title">Koulun opiskelutyökalujen käyttö</div>
+      <div class="description"></div>
+      <div id="lomake2" class="text-center fade-in">
          <form onsubmit="laheta()" >
           <div class="button">Seuraava</div>
         
       </form>
+          </div>
     </div>
       
-	  <div id="" class="modal-body modal-body-step-5">
+       <div id="" class="modal-body modal-body-step-5">
       <div class="title">Kysymys 4</div>
       <div class="description">Oletko kiinnostunut toimimaan Helgan tutorina? Jos, niin miksi?</div>
       <form onsubmit="laheta()">
@@ -174,56 +256,7 @@
 
   <!-- JSON -->
         <script>
-             
-			function laheta() {
-
             
-            var tyyppi;
-			var vastaus;
-			var lahetys;
-
-
-            for (i = 0; i < lomakekentta.length; i++) {
-                tyyppi = document.getElementById(lomakekentta[i]).type;
-                var radios = document.getElementsByName(lomakekentta[i]);
-                var checkbox = document.getElementsByName(lomakekentta[i]);
-
-
-                if (tyyppi == "text" || tyyppi == "textarea") {
-                    vastaus = document.getElementById(lomakekentta[i]).value;
-                    lahetys = "Kysymys: " + lomakekentta[i] + ", Vastaus: " + vastaus;
-                    alert(lahetys);
-                }
-
-
-                if (tyyppi == "radio") {
-                    for (var x = 0, length = radios.length; x < length; x++) {
-                        if (radios[x].checked) {
-                            vastaus = radios[x].value;
-                            lahetys = "Kysymys: " + lomakekentta[i] + ", Vastaus: " + vastaus;
-                            alert(lahetys);
-                        }
-                    }
-                }
-
-
-
-
-                if (tyyppi == "checkbox") {
-                    for (var x = 0, length = checkbox.length; x < length; x++){
-
-                        if (checkbox[x].checked) {
-                            vastaus = checkbox[x].value;
-                            lahetys = "Kysymys: " + lomakekentta[i] + ", Vastaus: " + vastaus;
-                            alert(lahetys);
-                        }
-                }
-					 }
-
-
-            }
-        }
-        
  var myJSON = JSON.stringify(lahetys);
 
 $.ajax({
