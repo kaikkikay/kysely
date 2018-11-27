@@ -8,11 +8,12 @@ html {
 #charNum {
 	font-size: 12px;
 }
+
 img{
-	
 	padding-left: 20px;
 	padding-top: 20px;
 }
+
 .title {
   text-transform: uppercase;
   text-align: center;
@@ -40,9 +41,10 @@ textarea[type="text"] {
   box-sizing: border-box;
   outline: none;
 }
+
 input[type="text"]:focus,
 input[type="email"]:focus {
-  border-color: #FF6F00;
+  border-color: #18515E;
 }
 
 input[type="radio"] {
@@ -52,7 +54,6 @@ input[type="radio"] {
 
 radio {
 	display: inline;
-	
 }
 
 label {
@@ -65,11 +66,13 @@ label {
   padding: 20px 0;
   cursor: pointer;
 }
+
 label:first-child {
   margin-bottom: 0;
   border-bottom: none;
 }
 
+input,
 .button,
 .rerun-button {
   padding: 10px 20px;
@@ -81,9 +84,12 @@ label:first-child {
   display: inline-block;
   cursor: pointer;
 }
+
+input:hover,
 .button:hover,
 .rerun-button:hover {
-  background: #e66400;
+  background: #1d6372;
+
 }
 .button.rerun-button,
 .rerun-button.rerun-button {
