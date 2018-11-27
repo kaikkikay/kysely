@@ -27,15 +27,30 @@
 	
 	<script>
 	//osio 1
-		$.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kyselyt",
+		$.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset",
                       function( data ) {
                 
                 var items = [];
                 var lomakekentta = [];
                 var kysymys = data.kysymys;
-				var osio = data.osio;
+				
                 
 		$.each(data, function(key, d) {
+			
+			if (d.tyyppi=="text") {
+        items.push(d.kysymys + "<br><input type="+d.tyyppi+ " id="+d.id+" ><br>");
+        lomakekentta.push(d.id);
+        }
+            
+        if (d.tyyppi=="radio" || d.tyyppi=="checkbox") { 
+        items.push("<br>" + d.kysymys + ":<br>");
+            for (i = 0; i < d.value.length; i++) {
+                items.push("<input type="+d.tyyppi+ " id="+d.id+" name=" + d.id+ " value="+d.value[i]+" >" +d.value[i]+"<br>");
+                
+            }lomakekentta.push(d.id);
+        }
+        
+			
 			
 			if (d.osio == "osio1"){
 		   items.push(d.kysymys + "<br><input type='text' id="+d.id+"><br>");
@@ -51,74 +66,8 @@
             });
 		
 		
-		//osio2
-		$.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kyselyt",
-                      function( data ) {
-                
-                var items = [];
-                var lomakekentta = [];
-                var kysymys = data.kysymys;
-				var osio = data.osio;
-                
-		$.each(data, function(key, d) {
+	
 			
-			if (d.osio == "osio2"){
-		   items.push(d.kysymys + "<br><input type='text' id="+d.id+"><br>");
-                   lomakekentta.push(d.id);
-	      }
-                })
-		
-		 
-                       
-            $( "<div/>", {
-				
-            html: items.join( "" )}).appendTo("#lomake1").show();
-            });
-		
-		//osio 3
-		$.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kyselyt",
-                      function( data ) {
-                
-                var items = [];
-                var lomakekentta = [];
-                var kysymys = data.kysymys;
-				var osio = data.osio;
-                
-		$.each(data, function(key, d) {
-			
-			if (d.osio == "osio3"){
-		   items.push(d.kysymys + "<br><input type='text' id="+d.id+"><br>");
-                   lomakekentta.push(d.id);
-	      }
-                })
-		
-		            
-            $( "<div/>", {
-				
-            html: items.join( "" )}).appendTo("#lomake2").show();
-            });
-		
-			function laheta() {
-            
-            var vastaus;
-            var tunnus;
-                
-                for (i=0; i<lomakekentta.length; i++) {
-                vastaus = document.getElementById(lomakekentta[i]).value;
-                alert("'id':"+lomakekentta[i]+",'vastaus':' "+vastaus+"'");
-                lahetys="'id':"+lomakekentta[i]+",'vastaus':' "+vastaus+"'"
-                var myJSON = JSON.stringify(lahetys);
-                    
-                $.ajax({
-                url: 'https://ohjelmistoprojekti-yksi.herokuapp.com/vastaus',
-                type: 'POST',
-                dataType: 'json',
-                data: jsonData, 
-                success: function() { alert('POST completed. Data:' + myJSON)}
-                });   
-                
-                }
-            }
     
            
 	</script>
@@ -226,7 +175,65 @@
   <!-- JSON -->
         <script>
              
-			
+			function laheta() {
+
+            
+            var tyyppi;
+			var vastaus;
+			var lahetys;
+
+
+            for (i = 0; i < lomakekentta.length; i++) {
+                tyyppi = document.getElementById(lomakekentta[i]).type;
+                var radios = document.getElementsByName(lomakekentta[i]);
+                var checkbox = document.getElementsByName(lomakekentta[i]);
+
+
+                if (tyyppi == "text" || tyyppi == "textarea") {
+                    vastaus = document.getElementById(lomakekentta[i]).value;
+                    lahetys = "Kysymys: " + lomakekentta[i] + ", Vastaus: " + vastaus;
+                    alert(lahetys);
+                }
+
+
+                if (tyyppi == "radio") {
+                    for (var x = 0, length = radios.length; x < length; x++) {
+                        if (radios[x].checked) {
+                            vastaus = radios[x].value;
+                            lahetys = "Kysymys: " + lomakekentta[i] + ", Vastaus: " + vastaus;
+                            alert(lahetys);
+                        }
+                    }
+                }
+
+
+
+
+                if (tyyppi == "checkbox") {
+                    for (var x = 0, length = checkbox.length; x < length; x++){
+
+                        if (checkbox[x].checked) {
+                            vastaus = checkbox[x].value;
+                            lahetys = "Kysymys: " + lomakekentta[i] + ", Vastaus: " + vastaus;
+                            alert(lahetys);
+                        }
+                }
+					 }
+
+
+            }
+        }
+        
+ var myJSON = JSON.stringify(lahetys);
+
+$.ajax({
+ url: 'http://www.mocky.io/v2/5bfb9e5a3200002c00bee57c',
+ type: 'POST',
+ dataType: 'json',
+ data: jsonData, 
+ success: function() { alert('POST completed. Data:' + myJSON)}
+});
+            
            
             function countChar(val) {
         var len = val.value.length;
