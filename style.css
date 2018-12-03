@@ -1,6 +1,7 @@
 html {
     background: -webkit-radial-gradient(#18515E, #f57f17);
-    background: #18515E;
+    
+	background-image: linear-gradient(to right, rgba(24, 81, 94, 1), rgba(0, 202, 241, 1));
     min-height: 100%;
     font-family: "Roboto", sans-serif;
 }
