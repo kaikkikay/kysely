@@ -168,10 +168,9 @@ input[type=submit]:hover,
 }
 
 .kysymys button {
-    padding: 10px 10px;
+    padding: 10px 5px;
     border: 0px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.3px;
     background-color: white;
     color: #18515E;
     display: inline-block;
@@ -185,12 +184,12 @@ input[type=submit]:hover,
     color: white;
 }
 
-i {
+ i {
     color: #666;
     font-size: 20px;
     position: absolute;
-    right: 35px;
-}
+    right: 44px;
+} 
 
 .animate-out {
     -webkit-animation: out 600ms ease-in-out forwards;
