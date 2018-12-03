@@ -33,18 +33,18 @@
                 
                 var items = [];
                 
-                var kysymys = data.kysymys;
+                var kysymysteksti = data.kysymysteksti;
 				
                 
 		$.each(data, function(key, d) {
 			
 			if (d.tyyppi=="text") {
-        items.push(d.kysymys + "<br><input type="+d.tyyppi+ " id="+d.id+" ><br>");
+        items.push(d.kysymysteksti + "<br><input type="+d.tyyppi+ " id="+d.id+" ><br>");
         lomakekentta.push(d.id);
         }
             
         if (d.tyyppi=="radio" || d.tyyppi=="checkbox") { 
-        items.push("<br>" + d.kysymys + ":<br>");
+        items.push("<br>" + d.kysymysteksti + ":<br>");
             for (i = 0; i < d.value.length; i++) {
                 items.push("<input type="+d.tyyppi+ " id="+d.id+" name=" + d.id+ " value="+d.value[i]+" >" +d.value[i]+"<br>");
                 
@@ -53,8 +53,8 @@
         
 			
 			
-			if (d.osio == "osio1"){
-		   items.push(d.kysymys + "<br><input type='text' id="+d.id+"><br>");
+			if (d.osio == "Henkilötiedot"){
+		   items.push(d.kysymysteksti + "<br><input type='text' id="+d.id+"><br>");
                    lomakekentta.push(d.id);
 	      }
                 })
@@ -71,26 +71,26 @@
                 
                 var items = [];
                 
-                var kysymys = data.kysymys;
+                var kysymysteksti = data.kysymysteksti;
 				
                 
 		$.each(data, function(key, d) {
 			
 			if (d.tyyppi=="text") {
-        items.push(d.kysymys + "<br><input type="+d.tyyppi+ " id="+d.id+" ><br>");
+        items.push(d.kysymysteksti + "<br><input type="+d.tyyppi+ " id="+d.id+" ><br>");
         lomakekentta.push(d.id);
         }
             
         if (d.tyyppi=="radio" || d.tyyppi=="checkbox") { 
-        items.push("<br>" + d.kysymys + ":<br>");
+        items.push("<br>" + d.kysymysteksti + ":<br>");
             for (i = 0; i < d.value.length; i++) {
                 items.push("<input type="+d.tyyppi+ " id="+d.id+" name=" + d.id+ " value="+d.value[i]+" >" +d.value[i]+"<br>");
                 
             }lomakekentta.push(d.id);
         }
         
-			if (d.osio == "osio2"){
-		   items.push(d.kysymys + "<br><input type='text' id="+d.id+"><br>");
+			if (d.osio == "Yleistä tutortoiminnasta"){
+		   items.push(d.kysymysteksti + "<br><input type='text' id="+d.id+"><br>");
                    lomakekentta.push(d.id);
 	      }
                 })
@@ -106,27 +106,27 @@
                 
                 var items = [];
                 
-                var kysymys = data.kysymys;
+                var kysymysteksti = data.kysymysteksti;
 				
                 
 		$.each(data, function(key, d) {
 			
 			if (d.tyyppi=="text") {
-        items.push(d.kysymys + "<br><input type="+d.tyyppi+ " id="+d.id+" ><br>");
-        lomakekentta.push(d.id);
+        items.push(d.kysymysteksti + "<br><input type="+d.tyyppi+ " id="+d.kysymysid+" ><br>");
+        lomakekentta.push(d.kysymysid);
         }
             
         if (d.tyyppi=="radio" || d.tyyppi=="checkbox") { 
         items.push("<br>" + d.kysymys + ":<br>");
             for (i = 0; i < d.value.length; i++) {
-                items.push("<input type="+d.tyyppi+ " id="+d.id+" name=" + d.id+ " value="+d.value[i]+" >" +d.value[i]+"<br>");
+                items.push("<input type="+d.tyyppi+ " id="+d.kysymysid+" name=" + d.kysymysid+ " value="+d.value[i]+" >" +d.value[i]+"<br>");
                 
             }lomakekentta.push(d.id);
         }
         
-			if (d.osio == "osio2"){
-		   items.push(d.kysymys + "<br><input type='text' id="+d.id+"><br>");
-                   lomakekentta.push(d.id);
+			if (d.osio == "Ryhmäytyminen"){
+		   items.push(d.kysymysteksti + "<br><input type='text' id="+d.kysymysid+"><br>");
+                   lomakekentta.push(d.kysymysid);
 	      }
                 })
        
@@ -178,11 +178,14 @@
 
     }
 }
+			function goBack() {
+    window.history.back();
+}
         
 	</script>
  <img src="helga_logo.png">
 <div class="modal-wrap">
- <div class="modal-header"><span class="is-active"></span><span></span><span></span><span></span><span></span></div>
+ <div class="modal-header"><span action="action" onclick="window.history.go(-1); return false;"  value="Back" class="is-active"></span><span></span><span></span><span></span><span></span></div>
   <div class="modal-bodies">
     
      <div class="modal-body modal-body-step-1 is-showing">
@@ -196,7 +199,7 @@
       </form>
     </div>
     <div class="modal-body modal-body-step-2">
-      <div  class="title">Yleistä tutortoiminnasta</div>
+      <div  class="title">Perustiedot</div>
 		<script>
 		
                
@@ -218,7 +221,7 @@
     </div>
     
     <div class="modal-body modal-body-step-3">
-      <div class="title">Ryhmäytyminen</div>
+      <div class="title">Yleistä tutortoiminnasta</div>
       <div class="description"></div>
       <form onsubmit="laheta()" style="text-align: center">
           <div id="lomake1">
@@ -233,7 +236,7 @@
     </div>
       
     <div class="modal-body modal-body-step-4">
-      <div class="title">Koulun opiskelutyökalujen käyttö</div>
+      <div class="title">Ryhmäytyminen</div>
       <div class="description"></div>
          <form onsubmit="laheta()" style= "text-align: center">
              <div id="lomake2"></div>
@@ -244,8 +247,8 @@
           
     </div>
       
-   <!--  <div id="" class="modal-body modal-body-step-5">
-      <div class="title">Kysymys 4</div>
+    <div id="" class="modal-body modal-body-step-5">
+      <div class="title">Koulun opiskelutyökalujen käyttö</div>
       <div class="description">Oletko kiinnostunut toimimaan Helgan tutorina? Jos, niin miksi?</div>
       <form onsubmit="laheta()">
         <label>
@@ -255,17 +258,15 @@
           <div class="button">Seuraava</div>
         </div>
       </form>
-    </div> -->
+    </div> 
       
       <div class="modal-body modal-body-step-6">
       <div class="title">Kysymys 5</div>
       <div class="description">Millaisessa tilanteessa olet tarvinnut tutorilta apua?</div>
       <form onsubmit="laheta()">
-        <label>
-          <textarea type="text" required name="Kysymys5"></textarea>
-        </label>
+        
         <div class="text-center fade-in">
-          <input type="submit" value="Submit">
+          <div class="button rerun-button>"> Lähetä </div> 
         </div>
       </form>
     </div>
@@ -289,7 +290,7 @@
  var myJSON = JSON.stringify(lahetys);
 
 $.ajax({
- url: 'http://www.mocky.io/v2/5bfb9e5a3200002c00bee57c',
+ url: 'https://ohjelmistoprojekti-yksi.herokuapp.com/vastaus',
  type: 'POST',
  dataType: 'json',
  data: jsonData, 
