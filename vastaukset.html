@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fi">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129797765-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-129797765-1');
+
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Kysely</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+    <script>
+        var lomakekentta = [];
+        $.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/save",
+            function(data) {
+
+                var items = [];
+
+                var kysymys = data.kysymys;
+
+
+                $.each(data, function(key, d) {
+
+                    if (d.tyyppi == "text") {
+                        items.push(d.kysymys + "<br><input type=" + d.tyyppi + " id=" + d.id + " ><br>");
+                        lomakekentta.push(d.id);
+                    }
+
+                    if (d.tyyppi == "radio" || d.tyyppi == "checkbox") {
+                        items.push("<br>" + d.kysymys + ":<br>");
+                        for (i = 0; i < d.value.length; i++) {
+                            items.push("<input type=" + d.tyyppi + " id=" + d.id + " name=" + d.id + " value=" + d.value[i] + " >" + d.value[i] + "<br>");
+
+                        }
+                        lomakekentta.push(d.id);
+                    }
+
+
+
+                    if (d.osio) {
+                        items.push(d.kysymys + "<br><id=" + d.id + "><br>");
+                        lomakekentta.push(d.id);
+                    }
+                })
+
+                $("<div/>", {
+
+                    html: items.join("")
+                }).appendTo("#lomake").show();
+            });
+
+    </script>
+    <img src="helga_logo.png">
+    <div class="modal-wrap">
+        <div class="modal-bodies">
+            <div class="modal-body modal-body-step-1 is-showing">
+                <div class="title">Helgan tutortoiminnan kehittäminen</div>
+                <div class="description">Tässä voit tarkastella kyselyn vastauksia.</div>
+                <div class="">
+                    <div class="kysymys" id="1"><button>Millaisissa tilanteissa olet saanut tutorilta apua? <i class="fas fa-angle-down" id="nappi"></i></button></div>
+                        <div id="nayta">
+                            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+                        </div>
+                    
+                    <div class="kysymys" id="2"><button>Oletko kiinnostunut toimimaan Helgan tutorina? <i class="fas fa-angle-down" id="nappi2"></i></button>
+                     <div id="nayta2">
+                            <p>testi</p>
+                        </div>
+                    </div>
+                    <div class="kysymys" id="3"><button>Kuinka tyytyväinen olit ryhmäytymiseen orientaatioviikolla? <i class="fas fa-angle-down" id="nappi3"></i></button>
+                     <div id="nayta3">
+                            <p>testi</p>
+                        </div>
+                    </div>
+                    <div class="kysymys" id="4"><button>Miten tutorit auttoivat ryhmäytymisessä? <i class="fas fa-angle-down" id="nappi4"></i></button>
+                     <div id="nayta4">
+                            <p>testi</p>
+                        </div>    
+                    </div>
+                    <div class="kysymys" id="5"><button>Millaiset opiskelijatapahtumat kiinnostavat sinua? <i class="fas fa-angle-down" id="nappi5"></i></button>
+                     <div id="nayta5">
+                            <p>testi</p>
+                        </div>
+                    </div>
+                    <div class="kysymys" id="6"><button>Kuinka tyytyväinen olit tutorien järjestämään perehdytysprosessiin? <i class="fas fa-angle-down" id="nappi6"></i></button>
+                     <div id="nayta6">
+                            <p>testi</p>
+                        </div>
+                    </div>
+                    <div class="kysymys" id="7"><button>Missä olisit tarvinnut enemmän tukea tutoreilta? <i class="fas fa-angle-down" id="nappi7"></i></button>
+                     <div id="nayta7">
+                            <p>testi</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+         $("#nayta").hide();
+        var i = 0;
+        $('#1').on('click', function() {
+            $('#nayta').toggle('slow');
+            if (i++ % 2 == 0) {
+                $(this).find('i').toggleClass('fa-angle-up');
+            } else {
+                $(this).find('i').toggleClass('fa-angle-down');
+            }
+        });
+        $("#nayta2").hide();
+        var i = 0;
+        $('#2').on('click', function() {
+            $('#nayta2').toggle('slow');
+            if (i++ % 2 == 0) {
+                $(this).find('i').toggleClass('fa-angle-up');
+            } else {
+                $(this).find('i').toggleClass('fa-angle-down');
+            }
+        });
+        
+    $("#nayta3").hide();
+        var i = 0;
+        $('#3').on('click', function() {
+            $('#nayta3').toggle('slow');
+            if (i++ % 2 == 0) {
+                $(this).find('i').toggleClass('fa-angle-up');
+            } else {
+                $(this).find('i').toggleClass('fa-angle-down');
+            }
+        });
+            $("#nayta4").hide();
+        var i = 0;
+        $('#4').on('click', function() {
+            $('#nayta4').toggle('slow');
+            if (i++ % 2 == 0) {
+                $(this).find('i').toggleClass('fa-angle-up');
+            } else {
+                $(this).find('i').toggleClass('fa-angle-down');
+            }
+        });
+            $("#nayta5").hide();
+        var i = 0;
+        $('#5').on('click', function() {
+            $('#nayta5').toggle('slow');
+            if (i++ % 2 == 0) {
+                $(this).find('i').toggleClass('fa-angle-up');
+            } else {
+                $(this).find('i').toggleClass('fa-angle-down');
+            }
+        });
+           $("#nayta6").hide();
+        var i = 0;
+        $('#6').on('click', function() {
+            $('#nayta6').toggle('slow');
+            if (i++ % 2 == 0) {
+                $(this).find('i').toggleClass('fa-angle-up');
+            } else {
+                $(this).find('i').toggleClass('fa-angle-down');
+            }
+        });
+           $("#nayta7").hide();
+        var i = 0;
+        $('#7').on('click', function() {
+            $('#nayta7').toggle('slow');
+            if (i++ % 2 == 0) {
+                $(this).find('i').toggleClass('fa-angle-up');
+            } else {
+                $(this).find('i').toggleClass('fa-angle-down');
+            }
+        });
+        
+    </script>
+</body>
+
+</html>
