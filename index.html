@@ -134,6 +134,42 @@
 				
             html: items.join( "" )}).appendTo("#lomake2").show();
             });  
+			
+			//osio 4
+			
+			$.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset",
+                      function( data ) {
+                
+                var items = [];
+                
+                var kysymysteksti = data.kysymysteksti;
+				
+                
+		$.each(data, function(key, d) {
+			
+			if (d.tyyppi=="text") {
+        items.push(d.kysymysteksti + "<br><input type="+d.tyyppi+ " id="+d.kysymysid+" ><br>");
+        lomakekentta.push(d.kysymysid);
+        }
+            
+        if (d.tyyppi=="radio" || d.tyyppi=="checkbox") { 
+        items.push("<br>" + d.kysymys + ":<br>");
+            for (i = 0; i < d.value.length; i++) {
+                items.push("<input type="+d.tyyppi+ " id="+d.kysymysid+" name=" + d.kysymysid+ " value="+d.value[i]+" >" +d.value[i]+"<br>");
+                
+            }lomakekentta.push(d.id);
+        }
+        
+			if (d.osio == "Koulun opiskelutyökalujen käyttö"){
+		   items.push(d.kysymysteksti + "<br><input type='text' id="+d.kysymysid+"><br>");
+                   lomakekentta.push(d.kysymysid);
+	      }
+                })
+       
+            $( "<div/>", {
+				
+            html: items.join( "" )}).appendTo("#lomake3").show();
+            });  
         
             
 			function laheta() {
@@ -178,14 +214,12 @@
 
     }
 }
-			function goBack() {
-    window.history.back();
-}
+			
         
 	</script>
  <img src="helga_logo.png">
 <div class="modal-wrap">
- <div class="modal-header"><span action="action" onclick="window.history.go(-1); return false;"  value="Back" class="is-active"></span><span></span><span></span><span></span><span></span></div>
+ <div class="modal-header"><span></span><span onclick="takaisin"></span><span></span><span></span><span></span></div>
   <div class="modal-bodies">
     
      <div class="modal-body modal-body-step-1 is-showing">
@@ -198,7 +232,7 @@
         </div>
       </form>
     </div>
-    <div class="modal-body modal-body-step-2">
+    <div id="perustiedot"  class="modal-body modal-body-step-2">
       <div  class="title">Perustiedot</div>
 		<script>
 		
@@ -247,33 +281,31 @@
           
     </div>
       
-    <div id="" class="modal-body modal-body-step-5">
+    <div class="modal-body modal-body-step-5">
       <div class="title">Koulun opiskelutyökalujen käyttö</div>
-      <div class="description">Oletko kiinnostunut toimimaan Helgan tutorina? Jos, niin miksi?</div>
-      <form onsubmit="laheta()">
-        <label>
-          <textarea type="text" required name="Kysymys4"></textarea>
-        </label>
-        <div class="text-center fade-in">
-          <div class="button">Seuraava</div>
-        </div>
-      </form>
-    </div> 
-      
-      <div class="modal-body modal-body-step-6">
-      <div class="title">Kysymys 5</div>
-      <div class="description">Millaisessa tilanteessa olet tarvinnut tutorilta apua?</div>
+      <div id="lomake3"></div>
       <form onsubmit="laheta()">
         
         <div class="text-center fade-in">
           <div class="button rerun-button>"> Lähetä </div> 
         </div>
       </form>
-    </div>
+    </div> 
+      
+     <!-- <div class="modal-body modal-body-step-6">
+      <div class="title">Kysymys 5</div>
+      <div id="lomake4"> </div>
+      <form onsubmit="laheta()">
+        
+        <div class="text-center fade-in">
+          
+        </div>
+      </form>
+    </div> -->
       
 	   <div class="modal-body modal-body-step-7">
       <div class="title">Kiitos vastauksestanne!</div>
-      <div class="description">Voit nyt sulkea selaimen.</div>
+      <div class="description">Voit nyt sulkea kyselyn.</div>
       <div class="text-center">
       </div>
     </div>
@@ -298,16 +330,9 @@ $.ajax({
 });
             
            
-            function countChar(val) {
-        var len = val.value.length;
-        if (len >= 200) {
-          val.value = val.value.substring(0, 200);
-        } else {
-          $('#charNum').text(200 - len);
-        }
-      };
-			
-			
+     function goBack() {
+    document.getElementById("perustiedot").innerHTML;
+}
             
 			
         </script>

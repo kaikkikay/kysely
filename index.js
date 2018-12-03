@@ -10,8 +10,6 @@ $('.button').click(function(){
 });
 
 
-
-
 function step1($step, $pag){
 console.log('step1');
   // animate the step out
@@ -45,13 +43,13 @@ console.log('5');
   }, 300);
 }
 
-$('.rerun-button').click(function(){
+$('.takaisin').click(function(){
  $('.modal-wrap').removeClass('animate-up')
-                  .find('.modal-body')
+                  .find('#perustiedot')
                   .first().addClass('is-showing')
                   .siblings().removeClass('is-showing');
 
   $('.modal-header span').first().addClass('is-active')
                           .siblings().removeClass('is-active');
- $(this).hide();
+
 });
