@@ -10,6 +10,8 @@ $('.button').click(function(){
 });
 
 
+
+
 function step1($step, $pag){
 console.log('step1');
   // animate the step out
