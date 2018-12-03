@@ -1,7 +1,10 @@
 html {
     background: -webkit-radial-gradient(#18515E, #f57f17);
-    
-	background-image: linear-gradient(to right, rgba(24, 81, 94, 1), rgba(0, 202, 241, 1));
+    background: -webkit-radial-gradient(#18515E, #f57f17);
+    background: -webkit-linear-gradient(-135deg, #18515e, #158099);
+    background: -o-linear-gradient(-135deg, #18515e, #158099);
+    background: -moz-linear-gradient(-135deg, #18515e, #158099);
+    background: linear-gradient(-135deg, #18515e, #158099);
     min-height: 100%;
     font-family: "Roboto", sans-serif;
 }
