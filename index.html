@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="fi">
+
 <head>
+
+<meta Access-Control-Allow-Origin: *> 
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129797765-1"></script>
 <script>
@@ -42,14 +46,33 @@
         items.push(d.kysymysteksti + "<br><input type="+d.tyyppi+ " id="+d.id+" ><br>");
         lomakekentta.push(d.id);
         }
-            
-        if (d.tyyppi=="radio" || d.tyyppi=="checkbox") { 
+            console.log("kysymyksentyyppi"+d.onRadio);
+        /*if (d.dropdown==false) {
+			
         items.push("<br>" + d.kysymysteksti + ":<br>");
             for (i = 0; i < d.value.length; i++) {
-                items.push("<input type="+d.tyyppi+ " id="+d.id+" name=" + d.id+ " value="+d.value[i]+" >" +d.value[i]+"<br>");
+                items.push("<input type="+d.onRadio+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i]+" >" +d.vaihtoehdot[i]+"<br>");
                 
             }lomakekentta.push(d.id);
+        }*/
+			if (d.onRadio==true) {
+				console.log("kysymyksenvaihtoehdot" +d.vaihtoehdot)
+			
+        items.push("<br>" + d.kysymysteksti + ":<br>");
+            for (i = 0; i < d.vaihtoehdot.length; i++) {
+                items.push("<input type=radio"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" >" +d.vaihtoehdot[i].vastausvaihtoehto+"<br>");
+                console.log("vaihtoehdot"+d.onRadio);
+            }lomakekentta.push(d.id);
         }
+			
+			/*if ( d.checkbox==false) {
+			
+        items.push("<br>" + d.kysymysteksti + ":<br>");
+            for (i = 0; i < d.value.length; i++) {
+                items.push("<input type="+d.onRadio+ " id="+d.id+" name=" + d.id+ " value="+d.value[i]+" >" +d.value[i]+"<br>");
+                
+            }lomakekentta.push(d.id);
+        }*/
         
 			
 			
@@ -172,48 +195,7 @@
             });  
         
             
-			function laheta() {
-
-
-    var tyyppi;
-    var vastaus;
-    
-
-    for (i = 0; i < lomakekentta.length; i++) {
-        tyyppi = document.getElementById(lomakekentta[i]).type;
-        var radios = document.getElementsByName(lomakekentta[i]);
-        var checkbox = document.getElementsByName(lomakekentta[i]);
-        
-        if (tyyppi == "text" || tyyppi == "textarea") {
-            vastaus = document.getElementById(lomakekentta[i]).value;
-            lahetys = "Vastaus: " + vastaus;
-           console.log(lahetys);
-        }
-
-        if (tyyppi == "radio") {
-            for (var x = 0, length = radios.length; x < length; x++) {
-                if (radios[x].checked) {
-                    vastaus = radios[x].value;
-                    lahetys = "Kysymys: " + lomakekentta[i] + ", Vastaus: " + vastaus;
-                   
-                }
-            }
-        }
-
-        if (tyyppi == "checkbox") {
-            for (var x = 0, length = checkbox.length; x < length; x++) {
-
-                if (checkbox[x].checked) {
-                    vastaus = checkbox[x].value;
-                    lahetys = "Kysymys: " + lomakekentta[i] + ", Vastaus: " + vastaus;
-                   
-                }
-            }
-        }
-
-
-    }
-}
+			
 			
         
 	</script>
@@ -280,7 +262,7 @@
       <form onsubmit="laheta()">
         
         <div class="text-center fade-in">
-          <div class="button rerun-button>"> Lähetä </div> 
+          <button onClick="laheta()"> Lähetä </button>
         </div>
       </form>
     </div> 
@@ -311,14 +293,58 @@
 
   <!-- JSON -->
         <script>
+		
+		var lahetys;
+			
+			function laheta() {
+
+
+    var tyyppi;
+    var vastaus;
+    
+
+    for (i = 0; i < lomakekentta.length; i++) {
+        tyyppi = document.getElementById(lomakekentta[i]).type;
+        var radios = document.getElementsByName(lomakekentta[i]);
+        var checkbox = document.getElementsByName(lomakekentta[i]);
+        
+        if (tyyppi == "text" || tyyppi == "textarea") {
+            vastaus = document.getElementById(lomakekentta[i]).value;
+            lahetys = "Vastaus: " + vastaus;
+           console.log(lahetys);
+        }
+
+        if (onRadio == "radio") {
+            for (var x = 0, length = radios.length; x < length; x++) {
+                if (radios[x].checked) {
+                    vastaus = radios[x].value;
+                    lahetys = "Kysymys: " + lomakekentta[i] + ", Vastaus: " + vastaus;
+                   
+                }
+            }
+        }
+
+        if (tyyppi == "checkbox") {
+            for (var x = 0, length = checkbox.length; x < length; x++) {
+
+                if (checkbox[x].checked) {
+                    vastaus = checkbox[x].value;
+                    lahetys = "Kysymys: " + lomakekentta[i] + ", Vastaus: " + vastaus;
+                   
+                }
+            }
+        }
+
+
+    }
+}
             
- var myJSON = JSON.stringify(lahetys);
+ var myJSON = lahetys;
 
 $.ajax({
  url: 'https://ohjelmistoprojekti-yksi.herokuapp.com/vastaus',
  type: 'POST',
- dataType: 'json',
- data: jsonData, 
+ dataType: 'json', 
  success: function() { alert('POST completed. Data:' + myJSON)}
 });
             
