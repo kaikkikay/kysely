@@ -47,11 +47,12 @@
         lomakekentta.push(d.id);
         }
             console.log("kysymyksentyyppi"+d.onRadio);
-        /*if (d.dropdown==false) {
+        
+			/*if (d.dropdown==false) {
 			
         items.push("<br>" + d.kysymysteksti + ":<br>");
-            for (i = 0; i < d.value.length; i++) {
-                items.push("<input type="+d.onRadio+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i]+" >" +d.vaihtoehdot[i]+"<br>");
+            for (i = 0; i < d.vaihtoehdot.length; i++) {
+                items.push("<input type=dropdown"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" >" +d.vaihtoehdot[i].vastausvaihtoehto+"<br>");
                 
             }lomakekentta.push(d.id);
         }*/
@@ -61,23 +62,21 @@
         items.push("<br>" + d.kysymysteksti + ":<br>");
             for (i = 0; i < d.vaihtoehdot.length; i++) {
                 items.push("<input type=radio"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" >" +d.vaihtoehdot[i].vastausvaihtoehto+"<br>");
-                console.log("vaihtoehdot"+d.onRadio);
             }lomakekentta.push(d.id);
         }
 			
 			/*if ( d.checkbox==false) {
 			
         items.push("<br>" + d.kysymysteksti + ":<br>");
-            for (i = 0; i < d.value.length; i++) {
-                items.push("<input type="+d.onRadio+ " id="+d.id+" name=" + d.id+ " value="+d.value[i]+" >" +d.value[i]+"<br>");
+            for (i = 0; i < d.vaihtoehdot.length; i++) {
+                items.push("<input type=checkbox"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" >" +d.vaihtoehdot[i].vastausvaihtoehto+"<br>");
                 
             }lomakekentta.push(d.id);
         }*/
         
 			
-			
 			if (d.osio == "Henkilötiedot"){
-		   items.push(d.kysymysteksti + "<br><input type='text' id="+d.id+"><br>");
+		   items.push(d.kysymysteksti + "<br><input type='radio' id="+d.id+"><br>");
                    lomakekentta.push(d.id);
 	      }
                 })

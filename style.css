@@ -53,8 +53,7 @@ input[type="email"]:focus {
 }
 
 input[type="radio"] {
-    margin-right: 10px;
-    display: inline;
+    display: inline-block;
 }
 
 radio {
@@ -111,7 +110,7 @@ input[type=submit]:hover,
 
 .modal-wrap {
     max-width: 600px;
-    margin: 50px auto;
+    margin: 20px auto;
     -webkit-transition: -webkit-transform 300ms ease-in-out;
     transition: -webkit-transform 300ms ease-in-out;
     transition: transform 300ms ease-in-out;
