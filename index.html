@@ -3,7 +3,7 @@
 
 <head>
 
-<meta Access-Control-Allow-Origin: *> 
+<meta Access-Control-Allow-Origin: > 
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129797765-1"></script>
@@ -43,8 +43,7 @@
 		$.each(data, function(key, d) {
 			
 			if (d.osio == "Henkilötiedot"){
-		   console.log("kysymyksenvaihtoehdot" +d.vaihtoehdot)
-			
+		   
         items.push("<br>" + d.kysymysteksti + ":<br>");
             for (i = 0; i < d.vaihtoehdot.length; i++) {
                 items.push("<input type=radio"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
@@ -55,7 +54,7 @@
         items.push(d.kysymysteksti + "<br><input type="+d.tyyppi+ " id="+d.id+" ><br>");
         lomakekentta.push(d.id);
         }
-            console.log("kysymyksentyyppi"+d.onRadio);
+            
         
 			/*if (d.dropdown==false) {
 			
@@ -267,7 +266,7 @@
       <form onsubmit="laheta()">
         
         <div class="text-center fade-in">
-          <button onClick="laheta()"> Lähetä </button>
+			<input type="submit" value="Submit"> 
         </div>
       </form>
     </div> 
@@ -319,12 +318,12 @@
            console.log(lahetys);
         }
 
-        if (onRadio == "radio") {
+        if (tyyppi == "radio") {
             for (var x = 0, length = radios.length; x < length; x++) {
                 if (radios[x].checked) {
                     vastaus = radios[x].value;
                     lahetys = "Kysymys: " + lomakekentta[i] + ", Vastaus: " + vastaus;
-                   
+                   console.log(lahetys);
                 }
             }
         }
@@ -344,12 +343,13 @@
     }
 }
             
- var myJSON = lahetys;
+ var myJSON = JSON.stringify (lahetys);
 
 $.ajax({
  url: 'https://ohjelmistoprojekti-yksi.herokuapp.com/vastaus',
  type: 'POST',
- dataType: 'json', 
+ dataType: 'json',
+data: jsonData,	
  success: function() { alert('POST completed. Data:' + myJSON)}
 });
             
