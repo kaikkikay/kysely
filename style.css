@@ -53,11 +53,13 @@ input[type="email"]:focus {
 }
 
 input[type="radio"] {
-    display: inline-block;
+    display: inline;
+	margin: 10px;
 }
 
 radio {
     display: inline;
+	padding: 30px;
 }
 
 label {

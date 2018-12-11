@@ -16,7 +16,7 @@
 </script>
   <meta charset="UTF-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
   <title>Kysely</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
@@ -42,6 +42,15 @@
                 
 		$.each(data, function(key, d) {
 			
+			if (d.osio == "Henkilötiedot"){
+		   console.log("kysymyksenvaihtoehdot" +d.vaihtoehdot)
+			
+        items.push("<br>" + d.kysymysteksti + ":<br>");
+            for (i = 0; i < d.vaihtoehdot.length; i++) {
+                items.push("<input type=radio"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
+            }lomakekentta.push(d.id);
+	      }
+			
 			if (d.tyyppi=="text") {
         items.push(d.kysymysteksti + "<br><input type="+d.tyyppi+ " id="+d.id+" ><br>");
         lomakekentta.push(d.id);
@@ -56,14 +65,14 @@
                 
             }lomakekentta.push(d.id);
         }*/
-			if (d.onRadio==true) {
+			/*if (d.onRadio==true) {
 				console.log("kysymyksenvaihtoehdot" +d.vaihtoehdot)
 			
         items.push("<br>" + d.kysymysteksti + ":<br>");
             for (i = 0; i < d.vaihtoehdot.length; i++) {
-                items.push("<input type=radio"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" >" +d.vaihtoehdot[i].vastausvaihtoehto+"<br>");
+                items.push("<input type=radio"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
             }lomakekentta.push(d.id);
-        }
+        }*/
 			
 			/*if ( d.checkbox==false) {
 			
@@ -75,10 +84,7 @@
         }*/
         
 			
-			if (d.osio == "Henkilötiedot"){
-		   items.push(d.kysymysteksti + "<br><input type='radio' id="+d.id+"><br>");
-                   lomakekentta.push(d.id);
-	      }
+			
                 })
        
             $( "<div/>", {
