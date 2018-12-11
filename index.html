@@ -32,11 +32,13 @@
 	//osio 1
         
         var lomakekentta = [];
+		var kysymys= [];	
+			
 		$.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset",
                       function( data ) {
                 
-                var items = [];
                 
+                var items = [];
                 var kysymysteksti = data.kysymysteksti;
 				
                 
@@ -48,11 +50,13 @@
             for (i = 0; i < d.vaihtoehdot.length; i++) {
                 items.push("<input type=radio"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
             }lomakekentta.push(d.id);
+				kysymys.push(d.kysymysteksti);
 	      }
 			
 			if (d.tyyppi=="text") {
         items.push(d.kysymysteksti + "<br><input type="+d.tyyppi+ " id="+d.id+" ><br>");
         lomakekentta.push(d.id);
+		kysymys.push(d.kysymysteksti);		
         }
             
         
@@ -96,8 +100,8 @@
         $.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset",
                       function( data ) {
                 
-                var items = [];
                 
+                var items = [];
                 var kysymysteksti = data.kysymysteksti;
 				
                 
@@ -106,6 +110,7 @@
 			if (d.tyyppi=="text") {
         items.push(d.kysymysteksti + "<br><input type="+d.tyyppi+ " id="+d.id+" ><br>");
         lomakekentta.push(d.id);
+				kysymys.push(d.kysymysteksti);
         }
             
         if (d.tyyppi=="radio" || d.tyyppi=="checkbox") { 
@@ -114,11 +119,13 @@
                 items.push("<input type="+d.tyyppi+ " id="+d.id+" name=" + d.id+ " value="+d.value[i]+" >" +d.value[i]+"<br>");
                 
             }lomakekentta.push(d.id);
+			kysymys.push(d.kysymysteksti);
         }
         
 			if (d.osio == "Yleistä tutortoiminnasta"){
 		   items.push(d.kysymysteksti + "<br><input type='text' id="+d.id+"><br>");
                    lomakekentta.push(d.id);
+				kysymys.push(d.kysymysteksti);
 	      }
                 })
        
@@ -131,8 +138,8 @@
         $.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset",
                       function( data ) {
                 
+               
                 var items = [];
-                
                 var kysymysteksti = data.kysymysteksti;
 				
                 
@@ -167,8 +174,8 @@
 			$.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset",
                       function( data ) {
                 
-                var items = [];
                 
+                var items = [];
                 var kysymysteksti = data.kysymysteksti;
 				
                 
@@ -312,10 +319,9 @@
         var radios = document.getElementsByName(lomakekentta[i]);
         var checkbox = document.getElementsByName(lomakekentta[i]);
        
-        
         if (tyyppi == "text" || tyyppi == "textarea") {
             vastaus = document.getElementById(lomakekentta[i]).value;
-            lahetys = "{'vastausteksti':" + vastaus + "'kysymys':{ 'kysymysid':" + lomakekentta[i] + "'kysymysteksti'" + 'kysymysteksti' +"}}" ;
+            lahetys = "{'vastausteksti':" + vastaus + "'kysymys':{ 'kysymysid':" + lomakekentta[i] + "'kysymysteksti'" + kysymys[i] +"}}" ;
            console.log(lahetys);
         }
 
@@ -323,7 +329,7 @@
             for (var x = 0, length = radios.length; x < length; x++) {
                 if (radios[x].checked) {
                     vastaus = radios[x].value;
-                    lahetys = "{'vastausteksti':" + vastaus + "'kysymys':{ 'kysymysid':" + lomakekentta[i] + "'kysymysteksti'" + kysymysteksti + "}}";
+                    lahetys = "{'vastausteksti':" + vastaus + "'kysymys':{ 'kysymysid':" + lomakekentta[i] + "'kysymysteksti'" + kysymys[i] + "}}";
                    console.log(lahetys);
                 }
             }
@@ -334,7 +340,7 @@
 
                 if (checkbox[x].checked) {
                     vastaus = checkbox[x].value;
-                    lahetys = "{'vastausteksti':" + vastaus + "'kysymys':{ 'kysymysid':" + lomakekentta[i] + "'kysymysteksti'" + 'kysymysteksti' +"}}";
+                    lahetys = "{'vastausteksti':" + vastaus + "'kysymys':{ 'kysymysid':" + lomakekentta[i] + "'kysymysteksti'" + kysymys[i] +"}}";
                    
                 }
             }
@@ -350,7 +356,6 @@ $.ajax({
  url: 'https://ohjelmistoprojekti-yksi.herokuapp.com/vastaus',
  type: 'POST',
  dataType: 'json',
-data: jsonData,	
  success: function() { alert('POST completed. Data:' + myJSON)}
 });
             
