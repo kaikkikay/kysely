@@ -44,7 +44,7 @@
                 
 		$.each(data, function(key, d) {
 			
-			if (d.osio == "Henkilötiedot"){
+			if (d.kysymysid == 2){
 		   
         items.push("<br>" + d.kysymysteksti + ":<br>");
             for (i = 0; i < d.vaihtoehdot.length; i++) {
@@ -53,41 +53,24 @@
 				kysymys.push(d.kysymysteksti);
 	      }
 			
-			if (d.tyyppi=="text") {
-        items.push(d.kysymysteksti + "<br><input type="+d.tyyppi+ " id="+d.id+" ><br>");
-        lomakekentta.push(d.id);
-		kysymys.push(d.kysymysteksti);		
-        }
-            
-        
-			/*if (d.dropdown==false) {
-			
-        items.push("<br>" + d.kysymysteksti + ":<br>");
-            for (i = 0; i < d.vaihtoehdot.length; i++) {
-                items.push("<input type=dropdown"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" >" +d.vaihtoehdot[i].vastausvaihtoehto+"<br>");
-                
-            }lomakekentta.push(d.id);
-        }*/
-			/*if (d.onRadio==true) {
-				console.log("kysymyksenvaihtoehdot" +d.vaihtoehdot)
-			
+			if (d.kysymysid == 7){
+		   
         items.push("<br>" + d.kysymysteksti + ":<br>");
             for (i = 0; i < d.vaihtoehdot.length; i++) {
                 items.push("<input type=radio"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
             }lomakekentta.push(d.id);
-        }*/
+				kysymys.push(d.kysymysteksti);
+	      }
+            
 			
-			/*if ( d.checkbox==false) {
-			
+			if (d.kysymysid == 12){
+		   
         items.push("<br>" + d.kysymysteksti + ":<br>");
             for (i = 0; i < d.vaihtoehdot.length; i++) {
-                items.push("<input type=checkbox"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" >" +d.vaihtoehdot[i].vastausvaihtoehto+"<br>");
-                
+                items.push("<select value= "+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
             }lomakekentta.push(d.id);
-        }*/
-        
-			
-			
+				kysymys.push(d.kysymysteksti);
+	      }
                 })
        
             $( "<div/>", {
@@ -95,7 +78,8 @@
             html: items.join( "" )}).appendTo("#lomake").show();
             }); 
         
-            
+           
+        
        // osio 2
         $.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset",
                       function( data ) {
@@ -107,24 +91,31 @@
                 
 		$.each(data, function(key, d) {
 			
-			if (d.tyyppi=="text") {
-        items.push(d.kysymysteksti + "<br><input type="+d.tyyppi+ " id="+d.id+" ><br>");
-        lomakekentta.push(d.id);
-				kysymys.push(d.kysymysteksti);
-        }
-            
-        if (d.tyyppi=="radio" || d.tyyppi=="checkbox") { 
+			if (d.kysymysid == 25){
+		   
         items.push("<br>" + d.kysymysteksti + ":<br>");
-            for (i = 0; i < d.value.length; i++) {
-                items.push("<input type="+d.tyyppi+ " id="+d.id+" name=" + d.id+ " value="+d.value[i]+" >" +d.value[i]+"<br>");
-                
+            for (i = 0; i < d.vaihtoehdot.length; i++) {
+                items.push("<input type=radio"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
             }lomakekentta.push(d.id);
-			kysymys.push(d.kysymysteksti);
-        }
-        
-			if (d.osio == "Yleistä tutortoiminnasta"){
-		   items.push(d.kysymysteksti + "<br><input type='text' id="+d.id+"><br>");
-                   lomakekentta.push(d.id);
+				kysymys.push(d.kysymysteksti);
+	      }
+			
+			if (d.kysymysid == 31){
+		   
+        items.push("<br>" + d.kysymysteksti + ":<br>");
+            for (i = 0; i < d.vaihtoehdot.length; i++) {
+                items.push("<input type=checkbox"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
+            }lomakekentta.push(d.id);
+				kysymys.push(d.kysymysteksti);
+	      }
+            
+			
+			if (d.kysymysid == 40){
+		   
+        items.push("<br>" + d.kysymysteksti + ":<br>");
+            for (i = 0; i < d.vaihtoehdot.length; i++) {
+                items.push("<input type=radio "+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
+            }lomakekentta.push(d.id);
 				kysymys.push(d.kysymysteksti);
 	      }
                 })
@@ -132,42 +123,60 @@
             $( "<div/>", {
 				
             html: items.join( "" )}).appendTo("#lomake1").show();
-            });  
+            }); 
          
             // osio 3
         $.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset",
                       function( data ) {
                 
-               
+                
                 var items = [];
                 var kysymysteksti = data.kysymysteksti;
 				
                 
 		$.each(data, function(key, d) {
 			
-			if (d.tyyppi=="text") {
+			if (d.kysymysid == 43){
+		   
+        items.push("<br>" + d.kysymysteksti + ":<br>");
+            for (i = 0; i < d.vaihtoehdot.length; i++) {
+                items.push("<input type=radio"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
+            }lomakekentta.push(d.id);
+				kysymys.push(d.kysymysteksti);
+	      }
+			
+			if (d.kysymysid == 50){
+		   
+        items.push("<br>" + d.kysymysteksti + ":<br>");
+            for (i = 0; i < d.vaihtoehdot.length; i++) {
+                items.push("<input type=checkbox"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
+            }lomakekentta.push(d.id);
+				kysymys.push(d.kysymysteksti);
+	      }
+            
+			
+			if (d.kysymysid == 49){
+		   
         items.push(d.kysymysteksti + "<br><input type="+d.tyyppi+ " id="+d.kysymysid+" ><br>");
         lomakekentta.push(d.kysymysid);
-        }
-            
-        if (d.tyyppi=="radio" || d.tyyppi=="checkbox") { 
-        items.push("<br>" + d.kysymys + ":<br>");
-            for (i = 0; i < d.value.length; i++) {
-                items.push("<input type="+d.tyyppi+ " id="+d.kysymysid+" name=" + d.kysymysid+ " value="+d.value[i]+" >" +d.value[i]+"<br>");
-                
+        kysymys.push(d.kysymysteksti);
+	      }
+			
+			
+			if (d.kysymysid == 56){
+		   
+        items.push("<br>" + d.kysymysteksti + ":<br>");
+            for (i = 0; i < d.vaihtoehdot.length; i++) {
+                items.push("<input type=checkbox "+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
             }lomakekentta.push(d.id);
-        }
-        
-			if (d.osio == "Ryhmäytyminen"){
-		   items.push(d.kysymysteksti + "<br><input type='text' id="+d.kysymysid+"><br>");
-                   lomakekentta.push(d.kysymysid);
+				kysymys.push(d.kysymysteksti);
 	      }
                 })
        
             $( "<div/>", {
 				
             html: items.join( "" )}).appendTo("#lomake2").show();
-            });  
+            }); 
 			
 			//osio 4
 			
@@ -181,29 +190,30 @@
                 
 		$.each(data, function(key, d) {
 			
-			if (d.tyyppi=="text") {
+			if (d.kysymysid == 67){
+		   
+        
+		   
         items.push(d.kysymysteksti + "<br><input type="+d.tyyppi+ " id="+d.kysymysid+" ><br>");
         lomakekentta.push(d.kysymysid);
-        }
-            
-        if (d.tyyppi=="radio" || d.tyyppi=="checkbox") { 
-        items.push("<br>" + d.kysymys + ":<br>");
-            for (i = 0; i < d.value.length; i++) {
-                items.push("<input type="+d.tyyppi+ " id="+d.kysymysid+" name=" + d.kysymysid+ " value="+d.value[i]+" >" +d.value[i]+"<br>");
-                
+        kysymys.push(d.kysymysteksti);
+	      }
+	      
+			
+			if (d.kysymysid == 50){
+		   
+        items.push("<br>" + d.kysymysteksti + ":<br>");
+            for (i = 0; i < d.vaihtoehdot.length; i++) {
+                items.push("<input type=checkbox"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
             }lomakekentta.push(d.id);
-        }
-        
-			if (d.osio == "Koulun opiskelutyökalujen käyttö"){
-		   items.push(d.kysymysteksti + "<br><input type='text' id="+d.kysymysid+"><br>");
-                   lomakekentta.push(d.kysymysid);
+				kysymys.push(d.kysymysteksti);
 	      }
                 })
        
             $( "<div/>", {
 				
             html: items.join( "" )}).appendTo("#lomake3").show();
-            });  
+            }); 
         
             
 			
@@ -231,8 +241,7 @@
     <form  onsubmit="laheta()" style="text-align: center">
         <label>
           <div id="lomake" data-user="osio2" data-list-size="5"></div>
-        <!---- <textarea type="text" id="field" onkeyup="countChar(this)"></textarea> 
-          <div id="charNum"></div> -->
+        <div id="lomake1.1"> Testi testi </div>
         </label>
    			 
         <br><br>
