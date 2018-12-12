@@ -48,14 +48,12 @@
                     lomakekentta.push(d.kysymysid);
                     kysymys.push(d.kysymysteksti);
                 }
-                /* if (d.kysymysid == 12) {
+                 if (d.kysymysid == 12) {
                      items.push("<br>" + d.kysymysteksti + ":<br>");
-                     for (i = 0; i < d.vaihtoehdot.length; i++) {
-                         items.push("<select value= " + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
-                     }
+                     
                      lomakekentta.push(d.kysymysid);
                      kysymys.push(d.kysymysteksti);
-                 }*/
+                 }
             })
             $("<div/>", {
                 html: items.join("")
@@ -176,7 +174,24 @@
                 <form onsubmit="laheta()" style="text-align: center">
                     <label>
                         <div id="lomake" data-user="osio2" data-list-size="5"></div>
-                        
+                        	<div>
+                       	 		<select>
+  									<option value="Koulutusohjelma">Koulutusohjelma</option>
+  									<option value="Finanssi- ja talousasiantuntijan koulutus, tradenomi">Finanssi- ja talousasiantuntijan koulutus, tradenomi</option>
+ 									<option value="Hotelli-ja ravintola-alan liikkeenjohdon koulutus, restonomi">Hotelli-ja ravintola-alan liikkeenjohdon koulutus, restonomi</option>
+  									<option value="Johdon assistenttityön ja kielten koulutus, tradenomi">Johdon assistenttityön ja kielten koulutus, tradenomi</option>
+  									<option value="Journalismikoulutus, medianomi">Journalismikoulutus, medianomi</option>
+  									<option value="Liiketalouden koulutus, tradenomi">Liiketalouden koulutus, tradenomi</option>
+  									<option value="Liikunnan ja vapaa-ajan koulutus, liikunnanohjaaja">Liikunnan ja vapaa-ajan koulutus, liikunnanohjaaja</option>
+  									<option value="Matkailun koulutus, restonomi">Matkailun koulutus, restonomi</option>
+  									<option value="Matkailun liikkeenjohdon koulutus, restonomi">Matkailun liikkeenjohdon koulutus, restonomi</option>
+  									<option value="Myynnin ja visuaalisen markkinoinnin koulutus, tradenomi">Myynnin ja visuaalisen markkinoinnin koulutus, tradenomi</option>
+  									<option value="Myyntityön koulutus, tradenomi">Myyntityön koulutus, tradenomi</option>
+  									<option value="Ruokatuotannon johtamisen koulutus, restonomi">Ruokatuotannon johtamisen koulutus, restonomi</option>	
+  									<option value="Tietojenkäsittelyn koulutus, tradenomi">Tietojenkäsittelyn koulutus, tradenomi</option>	
+  											
+						 		</select>
+                   			</div>
                     </label>
                     <br>
                     <br>
@@ -275,7 +290,7 @@
                     vastaus = document.getElementById(lomakekentta[i]).value;
                     lahetys = '{"vastausteksti":' +'"' + vastaus + '"' + ',"kysymys":{ "kysymysid":' + '"' + lomakekentta[i] + '"'+',"kysymysteksti":' + '"' + kysymys[i]+'"' + "}}";
 					
-					var myJSON = lahetys;
+					var myJSON = JSON.stringify(lahetys);
         $.ajax({
             type: 'POST'
             , url: 'https://ohjelmistoprojekti-yksi.herokuapp.com/save'
