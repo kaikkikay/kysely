@@ -85,7 +85,7 @@
                 if (d.kysymysid == 40) {
                     items.push("<br>" + d.kysymysteksti + ":<br>");
                     for (i = 0; i < d.vaihtoehdot.length; i++) {
-                        items.push("<input type=radio " + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                        items.push("<input type=radio" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
                     }
                     lomakekentta.push(d.kysymysid);
                     kysymys.push(d.kysymysteksti);
@@ -117,14 +117,14 @@
                     kysymys.push(d.kysymysteksti);
                 }
                 if (d.kysymysid == 49) {
-                    items.push(d.kysymysteksti + "<br><input type=" + d.tyyppi + " id=" + d.kysymysid + " ><br>");
+                    items.push("<br>" + d.kysymysteksti + "<br><input type=" + d.tyyppi + " id=" + d.kysymysid + " <br>");
                     lomakekentta.push(d.kysymysid);
                     kysymys.push(d.kysymysteksti);
                 }
                 if (d.kysymysid == 56) {
                     items.push("<br>" + d.kysymysteksti + ":<br>");
                     for (i = 0; i < d.vaihtoehdot.length; i++) {
-                        items.push("<input type=checkbox " + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                        items.push("<input type=checkbox" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
                     }
                     lomakekentta.push(d.kysymysid);
                     kysymys.push(d.kysymysteksti);
@@ -140,14 +140,14 @@
             var kysymysteksti = data.kysymysteksti;
             $.each(data, function (key, d) {
                 if (d.kysymysid == 67) {
-                    items.push(d.kysymysteksti + "<br><input type=" + d.tyyppi + " id=" + d.kysymysid + " ><br>");
+                    items.push("<br><br>" + d.kysymysteksti + "<br><input type=" + d.tyyppi + " id=" + d.kysymysid + " ><br>");
                     lomakekentta.push(d.kysymysid);
                     kysymys.push(d.kysymysteksti);
                 }
                 if (d.kysymysid == 50) {
                     items.push("<br>" + d.kysymysteksti + ":<br>");
                     for (i = 0; i < d.vaihtoehdot.length; i++) {
-                        items.push("<input type=checkbox" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                        items.push("<input type=radio" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
                     }
                     lomakekentta.push(d.kysymysid);
                     kysymys.push(d.kysymysteksti);
