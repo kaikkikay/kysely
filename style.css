@@ -62,6 +62,27 @@ radio {
 	padding: 30px;
 }
 
+input[type=checkbox] {
+     display: block;
+  position: relative;
+  padding-left: 5px;
+  margin-bottom: 12px;
+  text-align: left;
+    font-size: 12px;
+}
+
+
+
+
+checkbox {
+  display: block;
+  position: relative;
+  padding-left: 5px;
+  margin-bottom: 12px;
+  text-align: left;
+    font-size: 12px;
+}
+
 label {
     margin-bottom: 20px;
     text-align: center;
