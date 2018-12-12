@@ -176,7 +176,7 @@
                 <form onsubmit="laheta()" style="text-align: center">
                     <label>
                         <div id="lomake" data-user="osio2" data-list-size="5"></div>
-                        <div id="lomake1.1"> Testi testi </div>
+                        
                     </label>
                     <br>
                     <br>
@@ -250,15 +250,14 @@
                 tyyppi = document.getElementById(lomakekentta[i]).type;
                 var radios = document.getElementsByName(lomakekentta[i]);
                 var checkbox = document.getElementsByName(lomakekentta[i]);
-                if (tyyppi == "text" || tyyppi == "textarea") {
-                    vastaus = document.getElementById(lomakekentta[i]).value;
-                    lahetys = "{'vastausteksti':" + vastaus + ",'kysymys':{ 'kysymysid':" + lomakekentta[i] + ",'kysymysteksti':" + kysymys[i] + "}}";
-                }
+                
+				
                 if (tyyppi == 'radio') {
                     for (var x = 0, length1 = radios.length; x < length1; x++) {
                         if (radios[x].checked) {
                             vastaus = radios[x].value;
                             lahetys = "{'vastausteksti':" + vastaus + ",'kysymys':{ 'kysymysid':" + lomakekentta[i] + ",'kysymysteksti':" + kysymys[i] + "}}";
+							
                         }
                     }
                 }
@@ -267,20 +266,31 @@
                         if (checkbox[x].checked) {
                             vastaus = checkbox[x].value;
                             lahetys = "{'vastausteksti':" + vastaus + ",'kysymys':{ 'kysymysid':" + lomakekentta[i] + ",'kysymysteksti':" + kysymys[i] + "}}";
+							console.log(lahetys)
                         }
                     }
                 }
+				
+				if (tyyppi == "text" || tyyppi == "textarea") {
+                    vastaus = document.getElementById(lomakekentta[i]).value;
+                    lahetys = '{"vastausteksti":' +'"' + vastaus + '"' + ',"kysymys":{ "kysymysid":' + '"' + lomakekentta[i] + '"'+',"kysymysteksti":' + '"' + kysymys[i]+'"' + "}}";
+					
+                }
             }
             console.log(lahetys)
-        var myJSON = JSON.stringify(lahetys);
+        var myJSON = lahetys;
         $.ajax({
             type: 'POST'
-            , url: 'https://ohjelmistoprojekti-yksi.herokuapp.com/vastaus'
+            , url: 'https://ohjelmistoprojekti-yksi.herokuapp.com/save'
             , data: myJSON
             , dataType: 'json'
             , success: function () {
                 alert('POST completed. Data:' + myJSON)
+				
             }
+			, error: function () {
+				alert("Ei toimi saatana")
+			}
         })
         };
 
