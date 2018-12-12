@@ -275,10 +275,7 @@
                     vastaus = document.getElementById(lomakekentta[i]).value;
                     lahetys = '{"vastausteksti":' +'"' + vastaus + '"' + ',"kysymys":{ "kysymysid":' + '"' + lomakekentta[i] + '"'+',"kysymysteksti":' + '"' + kysymys[i]+'"' + "}}";
 					
-                }
-            }
-            console.log(lahetys)
-        var myJSON = lahetys;
+					var myJSON = lahetys;
         $.ajax({
             type: 'POST'
             , url: 'https://ohjelmistoprojekti-yksi.herokuapp.com/save'
@@ -292,6 +289,10 @@
 				alert("Ei toimi saatana")
 			}
         })
+                }
+            }
+            console.log(lahetys)
+        
         };
 
     </script>
