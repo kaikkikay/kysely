@@ -27,90 +27,7 @@
     <link rel="stylesheet" href="style.css"> </head>
 
 <body>
-<script>
-      // Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
 
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawKysymys3Chart);
-    google.charts.setOnLoadCallback(drawKysymys2Chart);
-    google.charts.setOnLoadCallback(drawKysymys6Chart);
-   
-
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      function drawKysymys3Chart() {
-
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Erittäin tyytyväinen', 3],
-          ['Tyytyväinen', 1],
-          ['Ei tyytyväinen eikä tyytymätön', 1],
-          ['Tyytymätön', 1],
-          ['Erittäin tyytymätön', 2]
-        ]);
-
-        // Set chart options
-        var piechart_options = {'width':600,
-                       'height':400,
-                       'colors': ['#18515e', '#007068', '#2f8c52', '#87a027', '#eba312']
-                      };
-
-        // Instantiate and draw our chart, passing in some options.
-        var piechart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        piechart.draw(data, piechart_options);
-      }
-        
-      function drawKysymys2Chart() {
-
-
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Kyllä', 7],
-          ['Ei', 3],
-        ]);
-
-        var piechart_options = {'width':600,
-                       'height':400,
-                      'colors': ['#18515e','#eba312']};
-
-        var piechart = new google.visualization.PieChart(document.getElementById('kysymys2_div'));
-        piechart.draw(data, piechart_options);
-      }
-          function drawKysymys6Chart() {
-
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
-        data.addRows([
-          ['Erittäin tyytyväinen', 6],
-          ['Tyytyväinen', 1],
-          ['Ei tyytyväinen eikä tyytymätön', 1],
-          ['Tyytymätön', 3],
-          ['Erittäin tyytymätön', 2]
-        ]);
-
-        // Set chart options
-        var piechart_options = {'width':600,
-                       'height':400,
-                       'colors': ['#18515e', '#007068', '#2f8c52', '#87a027', '#eba312']
-                      };
-
-        // Instantiate and draw our chart, passing in some options.
-        var piechart = new 
-        google.visualization.PieChart(document.getElementById('chart6_div'));
-        piechart.draw(data, piechart_options);
-      }
-   
-    
-    </script> 
     <img src="helga_logo.png">
     <div class="modal-wrap">
         <div class="modal-bodies">
@@ -244,6 +161,90 @@
                 $(this).find('i').toggleClass('fa-angle-down');
             }
         });
+        
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawKysymys3Chart);
+    google.charts.setOnLoadCallback(drawKysymys2Chart);
+    google.charts.setOnLoadCallback(drawKysymys6Chart);
+   
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawKysymys3Chart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Erittäin tyytyväinen', 3],
+          ['Tyytyväinen', 1],
+          ['Ei tyytyväinen eikä tyytymätön', 1],
+          ['Tyytymätön', 1],
+          ['Erittäin tyytymätön', 2]
+        ]);
+
+        // Set chart options
+        var piechart_options = {'width':600,
+                       'height':400,
+                       'colors': ['#18515e', '#007068', '#2f8c52', '#87a027', '#eba312']
+                      };
+
+        // Instantiate and draw our chart, passing in some options.
+        var piechart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        piechart.draw(data, piechart_options);
+      }
+        
+      function drawKysymys2Chart() {
+
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Kyllä', 7],
+          ['Ei', 3],
+        ]);
+
+        var piechart_options = {'width':600,
+                       'height':400,
+                      'colors': ['#18515e','#eba312']};
+
+        var piechart = new google.visualization.PieChart(document.getElementById('kysymys2_div'));
+        piechart.draw(data, piechart_options);
+      }
+          function drawKysymys6Chart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Erittäin tyytyväinen', 6],
+          ['Tyytyväinen', 1],
+          ['Ei tyytyväinen eikä tyytymätön', 1],
+          ['Tyytymätön', 3],
+          ['Erittäin tyytymätön', 2]
+        ]);
+
+        // Set chart options
+        var piechart_options = {'width':600,
+                       'height':400,
+                       'colors': ['#18515e', '#007068', '#2f8c52', '#87a027', '#eba312']
+                      };
+
+        // Instantiate and draw our chart, passing in some options.
+        var piechart = new 
+        google.visualization.PieChart(document.getElementById('chart6_div'));
+        piechart.draw(data, piechart_options);
+      }
+   
+    
+    
     </script>
 </body>
 
