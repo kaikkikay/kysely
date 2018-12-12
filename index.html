@@ -2,292 +2,226 @@
 <html lang="fi">
 
 <head>
+    <meta Access-Control-Allow-Origin:>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-129797765-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-<meta Access-Control-Allow-Origin: > 
-
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-129797765-1"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-129797765-1');
-</script>
-  <meta charset="UTF-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <title>Kysely</title>
-  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-  <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-  
-      <link rel="stylesheet" href="style.css">
-
-  
-</head>
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+        gtag('config', 'UA-129797765-1');
+    </script>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Kysely</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <link rel="stylesheet" href="style.css"> </head>
 
 <body>
-		<script>
-	//osio 1
-        
+    <script>
+        //osio 1
         var lomakekentta = [];
-		var kysymys= [];	
-			
-		$.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset",
-                      function( data ) {
-                
-                
-                var items = [];
-                var kysymysteksti = data.kysymysteksti;
-				
-                
-		$.each(data, function(key, d) {
-			
-			if (d.kysymysid == 2){
-		   
-        items.push("<br>" + d.kysymysteksti + ":<br>");
-            for (i = 0; i < d.vaihtoehdot.length; i++) {
-                items.push("<input type=radio"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
-            }lomakekentta.push(d.id);
-				kysymys.push(d.kysymysteksti);
-	      }
-			
-			if (d.kysymysid == 7){
-		   
-        items.push("<br>" + d.kysymysteksti + ":<br>");
-            for (i = 0; i < d.vaihtoehdot.length; i++) {
-                items.push("<input type=radio"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
-            }lomakekentta.push(d.id);
-				kysymys.push(d.kysymysteksti);
-	      }
-            
-			
-			if (d.kysymysid == 12){
-		   
-        items.push("<br>" + d.kysymysteksti + ":<br>");
-            for (i = 0; i < d.vaihtoehdot.length; i++) {
-                items.push("<select value= "+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
-            }lomakekentta.push(d.id);
-				kysymys.push(d.kysymysteksti);
-	      }
-                })
-       
-            $( "<div/>", {
-				
-            html: items.join( "" )}).appendTo("#lomake").show();
-            }); 
-        
-           
-        
-       // osio 2
-        $.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset",
-                      function( data ) {
-                
-                
-                var items = [];
-                var kysymysteksti = data.kysymysteksti;
-				
-                
-		$.each(data, function(key, d) {
-			
-			if (d.kysymysid == 25){
-		   
-        items.push("<br>" + d.kysymysteksti + ":<br>");
-            for (i = 0; i < d.vaihtoehdot.length; i++) {
-                items.push("<input type=radio"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
-            }lomakekentta.push(d.id);
-				kysymys.push(d.kysymysteksti);
-	      }
-			
-			if (d.kysymysid == 31){
-		   
-        items.push("<br>" + d.kysymysteksti + ":<br>");
-            for (i = 0; i < d.vaihtoehdot.length; i++) {
-                items.push("<input type=checkbox"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
-            }lomakekentta.push(d.id);
-				kysymys.push(d.kysymysteksti);
-	      }
-            
-			
-			if (d.kysymysid == 40){
-		   
-        items.push("<br>" + d.kysymysteksti + ":<br>");
-            for (i = 0; i < d.vaihtoehdot.length; i++) {
-                items.push("<input type=radio "+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
-            }lomakekentta.push(d.id);
-				kysymys.push(d.kysymysteksti);
-	      }
-                })
-       
-            $( "<div/>", {
-				
-            html: items.join( "" )}).appendTo("#lomake1").show();
-            }); 
-         
-            // osio 3
-        $.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset",
-                      function( data ) {
-                
-                
-                var items = [];
-                var kysymysteksti = data.kysymysteksti;
-				
-                
-		$.each(data, function(key, d) {
-			
-			if (d.kysymysid == 43){
-		   
-        items.push("<br>" + d.kysymysteksti + ":<br>");
-            for (i = 0; i < d.vaihtoehdot.length; i++) {
-                items.push("<input type=radio"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
-            }lomakekentta.push(d.id);
-				kysymys.push(d.kysymysteksti);
-	      }
-			
-			if (d.kysymysid == 50){
-		   
-        items.push("<br>" + d.kysymysteksti + ":<br>");
-            for (i = 0; i < d.vaihtoehdot.length; i++) {
-                items.push("<input type=checkbox"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
-            }lomakekentta.push(d.id);
-				kysymys.push(d.kysymysteksti);
-	      }
-            
-			
-			if (d.kysymysid == 49){
-		   
-        items.push(d.kysymysteksti + "<br><input type="+d.tyyppi+ " id="+d.kysymysid+" ><br>");
-        lomakekentta.push(d.kysymysid);
-        kysymys.push(d.kysymysteksti);
-	      }
-			
-			
-			if (d.kysymysid == 56){
-		   
-        items.push("<br>" + d.kysymysteksti + ":<br>");
-            for (i = 0; i < d.vaihtoehdot.length; i++) {
-                items.push("<input type=checkbox "+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
-            }lomakekentta.push(d.id);
-				kysymys.push(d.kysymysteksti);
-	      }
-                })
-       
-            $( "<div/>", {
-				
-            html: items.join( "" )}).appendTo("#lomake2").show();
-            }); 
-			
-			//osio 4
-			
-			$.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset",
-                      function( data ) {
-                
-                
-                var items = [];
-                var kysymysteksti = data.kysymysteksti;
-				
-                
-		$.each(data, function(key, d) {
-			
-			if (d.kysymysid == 67){
-		   
-        
-		   
-        items.push(d.kysymysteksti + "<br><input type="+d.tyyppi+ " id="+d.kysymysid+" ><br>");
-        lomakekentta.push(d.kysymysid);
-        kysymys.push(d.kysymysteksti);
-	      }
-	      
-			
-			if (d.kysymysid == 50){
-		   
-        items.push("<br>" + d.kysymysteksti + ":<br>");
-            for (i = 0; i < d.vaihtoehdot.length; i++) {
-                items.push("<input type=checkbox"+ " id="+d.id+" name=" + d.id+ " value="+d.vaihtoehdot[i].vastausvaihtoehto+" <br>"  +d.vaihtoehdot[i].vastausvaihtoehto);
-            }lomakekentta.push(d.id);
-				kysymys.push(d.kysymysteksti);
-	      }
-                })
-       
-            $( "<div/>", {
-				
-            html: items.join( "" )}).appendTo("#lomake3").show();
-            }); 
-        
-            
-			
-			
-        
-	</script>
- <img src="helga_logo.png">
-<div class="modal-wrap">
- <div class="modal-header"><span></span><span onclick="takaisin"></span><span></span><span></span><span></span></div>
-  <div class="modal-bodies">
-    
-     <div class="modal-body modal-body-step-1 is-showing">
-      <div class="title">Helgan tutortoiminnan kehittäminen</div>
-      <div class="description">Kyselyn tavoitteena on selvittää, kuinka Helgan tutortoimintaa voitaisiin parantaa.</div>
-      <form>
-        
-        <div class="text-center">
-          <div class="button">Aloita</div>
-        </div>
-      </form>
-    </div>
-    
-	  <div id="perustiedot"  class="modal-body modal-body-step-2">
-      <div  class="title">Perustiedot</div>
-    <form  onsubmit="laheta()" style="text-align: center">
-        <label>
-          <div id="lomake" data-user="osio2" data-list-size="5"></div>
-        <div id="lomake1.1"> Testi testi </div>
-        </label>
-   			 
-        <br><br>
-        <div class="text-center fade-in">
-          <div class="button">Seuraava</div>
-        </div>
-      </form>
-    </div>
-    
-    <div class="modal-body modal-body-step-3">
-      <div class="title">Yleistä tutortoiminnasta</div>
-      <form onsubmit="laheta()" style="text-align: center">
-         <label><div id="lomake1"></div></label>
-         
-          
-          <br><br>
-         <div class="text-center fade-in">
-          <div class="button">Seuraava</div>
-        </div>
-      </form>
-    </div>
-      
-    <div class="modal-body modal-body-step-4">
-      <div class="title">Ryhmäytyminen</div>
-      <div class="description"></div>
-         <form onsubmit="laheta()" style= "text-align: center">
-             <label><div id="lomake2"></div></label>
-          <div class="text-center fade-in">
-             <div class="button">Seuraava</div>
-        </div>
-      </form>
-          
-    </div>
-      
-    <div class="modal-body modal-body-step-5">
-      <div class="title">Koulun opiskelutyökalujen käyttö</div>
-      <label><div id="lomake3"></div></label>
-      <form onsubmit="laheta()">
-        
-        <div class="text-center fade-in">
-			<input type="submit" value="Submit"> 
-        </div>
-      </form>
-    </div> 
-      
-     <!-- <div class="modal-body modal-body-step-6">
+        var kysymys = [];
+        $.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset", function (data) {
+            var items = [];
+            var kysymysteksti = data.kysymysteksti;
+            $.each(data, function (key, d) {
+                if (d.kysymysid == 2) {
+                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    for (i = 0; i < d.vaihtoehdot.length; i++) {
+                        items.push("<input type=radio" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                    }
+                    lomakekentta.push(d.kysymysid);
+                    kysymys.push(d.kysymysteksti);
+                }
+                if (d.kysymysid == 7) {
+                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    for (i = 0; i < d.vaihtoehdot.length; i++) {
+                        items.push("<input type=radio" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                    }
+                    lomakekentta.push(d.kysymysid);
+                    kysymys.push(d.kysymysteksti);
+                }
+                /* if (d.kysymysid == 12) {
+                     items.push("<br>" + d.kysymysteksti + ":<br>");
+                     for (i = 0; i < d.vaihtoehdot.length; i++) {
+                         items.push("<select value= " + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                     }
+                     lomakekentta.push(d.kysymysid);
+                     kysymys.push(d.kysymysteksti);
+                 }*/
+            })
+            $("<div/>", {
+                html: items.join("")
+            }).appendTo("#lomake").show();
+        });
+        // osio 2
+        $.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset", function (data) {
+            var items = [];
+            var kysymysteksti = data.kysymysteksti;
+            $.each(data, function (key, d) {
+                if (d.kysymysid == 25) {
+                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    for (i = 0; i < d.vaihtoehdot.length; i++) {
+                        items.push("<input type=radio" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                    }
+                    lomakekentta.push(d.kysymysid);
+                    kysymys.push(d.kysymysteksti);
+                }
+                if (d.kysymysid == 31) {
+                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    for (i = 0; i < d.vaihtoehdot.length; i++) {
+                        items.push("<input type=checkbox" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                    }
+                    lomakekentta.push(d.kysymysid);
+                    kysymys.push(d.kysymysteksti);
+                }
+                if (d.kysymysid == 40) {
+                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    for (i = 0; i < d.vaihtoehdot.length; i++) {
+                        items.push("<input type=radio " + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                    }
+                    lomakekentta.push(d.kysymysid);
+                    kysymys.push(d.kysymysteksti);
+                }
+            })
+            $("<div/>", {
+                html: items.join("")
+            }).appendTo("#lomake1").show();
+        });
+        // osio 3
+        $.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset", function (data) {
+            var items = [];
+            var kysymysteksti = data.kysymysteksti;
+            $.each(data, function (key, d) {
+                if (d.kysymysid == 43) {
+                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    for (i = 0; i < d.vaihtoehdot.length; i++) {
+                        items.push("<input type=radio" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                    }
+                    lomakekentta.push(d.kysymysid);
+                    kysymys.push(d.kysymysteksti);
+                }
+                if (d.kysymysid == 50) {
+                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    for (i = 0; i < d.vaihtoehdot.length; i++) {
+                        items.push("<input type=checkbox" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                    }
+                    lomakekentta.push(d.kysymysid);
+                    kysymys.push(d.kysymysteksti);
+                }
+                if (d.kysymysid == 49) {
+                    items.push(d.kysymysteksti + "<br><input type=" + d.tyyppi + " id=" + d.kysymysid + " ><br>");
+                    lomakekentta.push(d.kysymysid);
+                    kysymys.push(d.kysymysteksti);
+                }
+                if (d.kysymysid == 56) {
+                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    for (i = 0; i < d.vaihtoehdot.length; i++) {
+                        items.push("<input type=checkbox " + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                    }
+                    lomakekentta.push(d.kysymysid);
+                    kysymys.push(d.kysymysteksti);
+                }
+            })
+            $("<div/>", {
+                html: items.join("")
+            }).appendTo("#lomake2").show();
+        });
+        //osio 4
+        $.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/kysymykset", function (data) {
+            var items = [];
+            var kysymysteksti = data.kysymysteksti;
+            $.each(data, function (key, d) {
+                if (d.kysymysid == 67) {
+                    items.push(d.kysymysteksti + "<br><input type=" + d.tyyppi + " id=" + d.kysymysid + " ><br>");
+                    lomakekentta.push(d.kysymysid);
+                    kysymys.push(d.kysymysteksti);
+                }
+                if (d.kysymysid == 50) {
+                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    for (i = 0; i < d.vaihtoehdot.length; i++) {
+                        items.push("<input type=checkbox" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                    }
+                    lomakekentta.push(d.kysymysid);
+                    kysymys.push(d.kysymysteksti);
+                }
+            })
+            $("<div/>", {
+                html: items.join("")
+            }).appendTo("#lomake3").show();
+        });
+        //console.log(lomakekentta)
+        //console.log(kysymys)
+    </script> <img src="helga_logo.png">
+    <div class="modal-wrap">
+        <div class="modal-header"><span></span><span onclick="takaisin"></span><span></span><span></span><span></span></div>
+        <div class="modal-bodies">
+            <div class="modal-body modal-body-step-1 is-showing">
+                <div class="title">Helgan tutortoiminnan kehittäminen</div>
+                <div class="description">Kyselyn tavoitteena on selvittää, kuinka Helgan tutortoimintaa voitaisiin parantaa.</div>
+                <form>
+                    <div class="text-center">
+                        <div class="button">Aloita</div>
+                    </div>
+                </form>
+            </div>
+            <div id="perustiedot" class="modal-body modal-body-step-2">
+                <div class="title">Perustiedot</div>
+                <form onsubmit="laheta()" style="text-align: center">
+                    <label>
+                        <div id="lomake" data-user="osio2" data-list-size="5"></div>
+                        <div id="lomake1.1"> Testi testi </div>
+                    </label>
+                    <br>
+                    <br>
+                    <div class="text-center fade-in">
+                        <div class="button">Seuraava</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-body modal-body-step-3">
+                <div class="title">Yleistä tutortoiminnasta</div>
+                <form onsubmit="laheta()" style="text-align: center">
+                    <label>
+                        <div id="lomake1"></div>
+                    </label>
+                    <br>
+                    <br>
+                    <div class="text-center fade-in">
+                        <div class="button">Seuraava</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-body modal-body-step-4">
+                <div class="title">Ryhmäytyminen</div>
+                <div class="description"></div>
+                <form onsubmit="laheta()" style="text-align: center">
+                    <label>
+                        <div id="lomake2"></div>
+                    </label>
+                    <div class="text-center fade-in">
+                        <div class="button">Seuraava</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-body modal-body-step-5">
+                <div class="title">Koulun opiskelutyökalujen käyttö</div>
+                <label>
+                    <div id="lomake3"></div>
+                </label>
+                <form onsubmit="laheta()">
+                    <div class="text-center fade-in">
+                        <input type="submit" value="Submit"> </div>
+                </form>
+            </div>
+            <!-- <div class="modal-body modal-body-step-6">
       <div class="title">Kysymys 5</div>
       <div id="lomake4"> </div>
       <form onsubmit="laheta()">
@@ -297,83 +231,72 @@
         </div>
       </form>
     </div> -->
-      
-	   <div class="modal-body modal-body-step-7">
-      <div class="title">Kiitos vastauksestanne!</div>
-      <div class="description">Voit nyt sulkea kyselyn.</div>
-      <div class="text-center">
-      </div>
+            <div class="modal-body modal-body-step-7">
+                <div class="title">Kiitos vastauksestanne!</div>
+                <div class="description">Voit nyt sulkea kyselyn.</div>
+                <div class="text-center"> </div>
+            </div>
+        </div>
     </div>
-   
-  </div>
-</div>
-
-
     <script src="index.js"></script>
+    <!-- JSON -->
+    <script>
+        var lahetys1;
+        var lahetys2;
+        var lahetys3;
 
-  <!-- JSON -->
-        <script>
-		
-		var lahetys;
-			
-			function laheta() {
-
-
-    var tyyppi;
-    var vastaus;
-    var kysymysteksti;
-
-    for (i = 0; i < lomakekentta.length; i++) {
-        tyyppi = document.getElementById(lomakekentta[i]).type;
-        var radios = document.getElementsByName(lomakekentta[i]);
-        var checkbox = document.getElementsByName(lomakekentta[i]);
-       
-        if (tyyppi == "text" || tyyppi == "textarea") {
-            vastaus = document.getElementById(lomakekentta[i]).value;
-            lahetys = "{'vastausteksti':" + vastaus + "'kysymys':{ 'kysymysid':" + lomakekentta[i] + "'kysymysteksti'" + kysymys[i] +"}}" ;
-           console.log(lahetys);
-        }
-
-        if (tyyppi == "radio") {
-            for (var x = 0, length = radios.length; x < length; x++) {
-                if (radios[x].checked) {
-                    vastaus = radios[x].value;
-                    lahetys = "{'vastausteksti':" + vastaus + "'kysymys':{ 'kysymysid':" + lomakekentta[i] + "'kysymysteksti'" + kysymys[i] + "}}";
-                   console.log(lahetys);
+        function laheta() {
+            var tyyppi;
+            var vastaus;
+            var kysymysteksti;
+            for (i = 0; i < lomakekentta.length; i++) {
+                tyyppi = document.getElementById(lomakekentta[i]).type;
+                var radios = document.getElementsByName(lomakekentta[i]);
+                var checkbox = document.getElementsByName(lomakekentta[i]);
+                if (tyyppi == "text" || tyyppi == "textarea") {
+                    vastaus = document.getElementById(lomakekentta[i]).value;
+                    lahetys1 = "{'vastausteksti':" + vastaus + ",'kysymys':{ 'kysymysid':" + lomakekentta[i] + ",'kysymysteksti':" + kysymys[i] + "}}";
+                }
+                if (tyyppi == 'radio') {
+                    for (var x = 0, length1 = radios.length; x < length1; x++) {
+                        if (radios[x].checked) {
+                            vastaus = radios[x].value;
+                            lahetys2 = "{'vastausteksti':" + vastaus + ",'kysymys':{ 'kysymysid':" + lomakekentta[i] + ",'kysymysteksti':" + kysymys[i] + "}}";
+                        }
+                    }
+                }
+                if (tyyppi == "checkbox") {
+                    for (var x = 0, length = checkbox.length; x < length; x++) {
+                        if (checkbox[x].checked) {
+                            vastaus = checkbox[x].value;
+                            lahetys3 = "{'vastausteksti':" + vastaus + ",'kysymys':{ 'kysymysid':" + lomakekentta[i] + ",'kysymysteksti':" + kysymys[i] + "}}";
+                        }
+                    }
                 }
             }
-        }
-
-        if (tyyppi == "checkbox") {
-            for (var x = 0, length = checkbox.length; x < length; x++) {
-
-                if (checkbox[x].checked) {
-                    vastaus = checkbox[x].value;
-                    lahetys = "{'vastausteksti':" + vastaus + "'kysymys':{ 'kysymysid':" + lomakekentta[i] + "'kysymysteksti'" + kysymys[i] +"}}";
-                   
-                }
+        /*var myJSON = JSON.stringify(lahetys1, lahetys2, lahetys3);
+        $.ajax({
+            type: 'POST'
+            , url: 'https://ohjelmistoprojekti-yksi.herokuapp.com/vastaus'
+            , data: myJSON
+            , dataType: 'json'
+            , success: function () {
+                alert('POST completed. Data:' + myJSON)
             }
-        }
-
-
-    }
-}
-            
- var myJSON = JSON.stringify (lahetys);
-
-$.ajax({
- url: 'https://ohjelmistoprojekti-yksi.herokuapp.com/vastaus',
- type: 'POST',
- dataType: 'json',
- success: function() { alert('POST completed. Data:' + myJSON)}
-});
-            
-           
-     function goBack() {
-    document.getElementById("perustiedot").innerHTML;
-}
-            
-			
-        </script>
+        })*/
+        var myJSON = JSON.stringify({'vastausteksti':'testi','kysymys':{ 'kysymysid':2,'kysymysteksti':'testi'}});
+        $.ajax({
+            type: "POST"
+            , url: 'https://ohjelmistoprojekti-yksi.herokuapp.com/vastaus'
+            , data: myJSON
+            , success: function () {
+                alert('jee')
+            }
+            ,contentType: 'application/json; charset=utf-8'
+            , dataType: 'json'
+        });
+            };
+    </script>
 </body>
+
 </html>

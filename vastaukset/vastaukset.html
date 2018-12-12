@@ -11,229 +11,204 @@
             dataLayer.push(arguments);
         }
         gtag('js', new Date());
-
         gtag('config', 'UA-129797765-1');
-
     </script>
     <meta charset="UTF-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kysely</title>
+    <title>Vastaukset</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-    
     <!--Load the AJAX API-->
-     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-   
-
-
-
-
-
-    <link rel="stylesheet" href="style.css">
-
-
-</head>
+    <link rel="stylesheet" href="style.css"> </head>
 
 <body>
     <script>
         var lomakekentta = [];
-        $.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/save",
-            function(data) {
-
-                var items = [];
-
-                var kysymys = data.kysymys;
-
-
-                $.each(data, function(key, d) {
-
-                    if (d.tyyppi == "text") {
-                        items.push(d.kysymys + "<br><input type=" + d.tyyppi + " id=" + d.id + " ><br>");
-                        lomakekentta.push(d.id);
+        $.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/vastaus", function (data) {
+            var items = [];
+            var kysymys = data.kysymys;
+            $.each(data, function (key, d) {
+                if (d.tyyppi == "text") {
+                    items.push(d.kysymys + "<br><input type=" + d.tyyppi + " id=" + d.id + " ><br>");
+                    lomakekentta.push(d.id);
+                }
+                if (d.tyyppi == "radio" || d.tyyppi == "checkbox") {
+                    items.push("<br>" + d.kysymys + ":<br>");
+                    for (i = 0; i < d.value.length; i++) {
+                        items.push("<input type=" + d.tyyppi + " id=" + d.id + " name=" + d.id + " value=" + d.value[i] + " >" + d.value[i] + "<br>");
                     }
-
-                    if (d.tyyppi == "radio" || d.tyyppi == "checkbox") {
-                        items.push("<br>" + d.kysymys + ":<br>");
-                        for (i = 0; i < d.value.length; i++) {
-                            items.push("<input type=" + d.tyyppi + " id=" + d.id + " name=" + d.id + " value=" + d.value[i] + " >" + d.value[i] + "<br>");
-
-                        }
-                        lomakekentta.push(d.id);
-                    }
-
-
-
-                    if (d.osio) {
-                        items.push(d.kysymys + "<br><id=" + d.id + "><br>");
-                        lomakekentta.push(d.id);
-                    }
-                })
-
-                $("<div/>", {
-
-                    html: items.join("")
-                }).appendTo("#lomake").show();
-            });
-            
-            
-      google.charts.load('current', {'packages':['corechart']});
-
-      // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawChart);
-
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-      function drawChart() {
-          var jsonData = $.ajax({
-              url: "http://www.mocky.io/v2/5bf65f4832000063005d0e0d",
-              dataType: "json",
-              async: false
-          }).responseText;
-
-        // Create the data table.
-        var data = new google.visualization.DataTable(jsonData);
-     
-
-        // Set chart options
-        var options = {'width':550,
-                       'height':400};
-
-        // Instantiate and draw our chart, passing in some options.
-        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        chart.draw(data, options);
-      }
-    </script>
-
-
-        
-        
-    
-    <img src="helga_logo.png">
+                    lomakekentta.push(d.id);
+                }
+                if (d.osio) {
+                    items.push(d.kysymys + "<br><id=" + d.id + "><br>");
+                    lomakekentta.push(d.id);
+                }
+            })
+            $("<div/>", {
+                html: items.join("")
+            }).appendTo("#lomake").show();
+        });
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawChart);
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawChart() {
+            var jsonData = $.ajax({
+                url: "https://ohjelmistoprojekti-yksi.herokuapp.com/vastaus"
+                , dataType: "json"
+                , async: false
+            }).responseText;
+            // Create the data table.
+            var data = new google.visualization.DataTable(jsonData);
+            // Set chart options
+            var options = {
+                'width': 550
+                , 'height': 400
+            };
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script> <img src="helga_logo.png">
     <div class="modal-wrap">
         <div class="modal-bodies">
             <div class="modal-body modal-body-step-1 is-showing">
                 <div class="title">Helgan tutortoiminnan kehittäminen</div>
-                
                 <div class="description">Klikkaa kysymystä tarkastellaksesi vastauksia.</div>
                 <div class="">
-                    <div class="kysymys" id="1"><button>Millaisissa tilanteissa olet saanut tutorilta apua? <i class="fas fa-angle-down"></i></button></div>
-                        <div id="nayta">
-                            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-                        </div>
-                    
-                    <div class="kysymys" id="2"><button>Oletko kiinnostunut toimimaan Helgan tutorina? <i class="fas fa-angle-down"></i></button>
-                     <div id="nayta2">
-                          <p>testi</p>
-                        </div>
+                    <div class="kysymys" id="1">
+                        <button>Millaisissa tilanteissa olet saanut tutorilta apua? <i class="fas fa-angle-down"></i></button>
                     </div>
-                    <div class="kysymys" id="3"><button>Kuinka tyytyväinen olit ryhmäytymiseen orientaatioviikolla? <i class="fas fa-angle-down"></i></button>
-                     <div id="nayta3">
-                              <div id="chart_div"></div>
-                        </div>
+                    <div id="nayta">
+                        <p>vastaus 1</p>
                     </div>
-                    <div class="kysymys" id="4"><button>Miten tutorit auttoivat ryhmäytymisessä? <i class="fas fa-angle-down"></i></button>
-                     <div id="nayta4">
-                            <p>testi</p>
-                        </div>    
+                    <div class="kysymys" id="2">
+                        <button>Oletko kiinnostunut toimimaan Helgan tutorina? <i class="fas fa-angle-down"></i></button>
                     </div>
-                    <div class="kysymys" id="5"><button>Millaiset opiskelijatapahtumat kiinnostavat sinua? <i class="fas fa-angle-down"></i></button>
-                     <div id="nayta5">
-                            <p>testi</p>
-                        </div>
+                    <div id="nayta2">
+                        <p>vastaus 2</p>
                     </div>
-                    <div class="kysymys" id="6"><button>Kuinka tyytyväinen olit tutorien järjestämään perehdytysprosessiin? <i class="fas fa-angle-down"></i></button>
-                     <div id="nayta6">
-                            <p>testi</p>
-                        </div>
+                    <div class="kysymys" id="3">
+                        <button>Kuinka tyytyväinen olit ryhmäytymiseen orientaatioviikolla? <i class="fas fa-angle-down"></i></button>
                     </div>
-                    <div class="kysymys" id="7"><button>Missä olisit tarvinnut enemmän tukea tutoreilta? <i class="fas fa-angle-down"></i></button>
-                     <div id="nayta7">
-                            <p>testi</p>
+                    <div id="nayta3">
+                        <p>vastaus 3</p>
+                    </div>
+                    <div class="kysymys" id="4">
+                        <button>Miten tutorit auttoivat ryhmäytymisessä? <i class="fas fa-angle-down"></i></button>
+                    </div>
+                    <div id="nayta4">
+                        <p>vastaus 4</p>
+                    </div>
+                    <div class="kysymys" id="5">
+                        <button>Millaiset opiskelijatapahtumat kiinnostavat sinua? <i class="fas fa-angle-down"></i></button>
+                    </div>
+                    <div id="nayta5">
+                        <p>vastaus 5</p>
+                    </div>
+                    <div class="kysymys" id="6">
+                        <button>Kuinka tyytyväinen olit tutorien järjestämään perehdytysprosessiin? <i class="fas fa-angle-down"></i></button>
+                    </div>
+                    <div id="nayta6">
+                        <p>vastaus 6</p>
+                    </div>
+                    <div class="kysymys" id="7">
+                        <button>Missä olisit tarvinnut enemmän tukea tutoreilta? <i class="fas fa-angle-down"></i></button>
+                        <div id="nayta7">
+                            <p>vastaus 7</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     <script>
-         $("#nayta").hide();
+        $("#nayta").hide();
         var i = 0;
-        $('#1').on('click', function() {
+        $('#1').on('click', function () {
             $('#nayta').toggle('slow');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
-            } else {
+            }
+            else {
                 $(this).find('i').toggleClass('fa-angle-down');
             }
         });
         $("#nayta2").hide();
         var i = 0;
-        $('#2').on('click', function() {
+        $('#2').on('click', function () {
             $('#nayta2').toggle('slow');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
-            } else {
+            }
+            else {
                 $(this).find('i').toggleClass('fa-angle-down');
             }
         });
-        
-    $("#nayta3").hide();
+        $("#nayta3").hide();
         var i = 0;
-        $('#3').on('click', function() {
+        $('#3').on('click', function () {
             $('#nayta3').toggle('slow');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
-            } else {
+            }
+            else {
                 $(this).find('i').toggleClass('fa-angle-down');
             }
         });
-            $("#nayta4").hide();
+        $("#nayta4").hide();
         var i = 0;
-        $('#4').on('click', function() {
+        $('#4').on('click', function () {
             $('#nayta4').toggle('slow');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
-            } else {
+            }
+            else {
                 $(this).find('i').toggleClass('fa-angle-down');
             }
         });
-            $("#nayta5").hide();
+        $("#nayta5").hide();
         var i = 0;
-        $('#5').on('click', function() {
+        $('#5').on('click', function () {
             $('#nayta5').toggle('slow');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
-            } else {
+            }
+            else {
                 $(this).find('i').toggleClass('fa-angle-down');
             }
         });
-           $("#nayta6").hide();
+        $("#nayta6").hide();
         var i = 0;
-        $('#6').on('click', function() {
+        $('#6').on('click', function () {
             $('#nayta6').toggle('slow');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
-            } else {
+            }
+            else {
                 $(this).find('i').toggleClass('fa-angle-down');
             }
         });
-           $("#nayta7").hide();
+        $("#nayta7").hide();
         var i = 0;
-        $('#7').on('click', function() {
+        $('#7').on('click', function () {
             $('#nayta7').toggle('slow');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
-            } else {
+            }
+            else {
                 $(this).find('i').toggleClass('fa-angle-down');
             }
         });
-        
     </script>
 </body>
 

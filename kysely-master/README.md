@@ -1,2 +1,0 @@
-# kysely
-Kysely 
