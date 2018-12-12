@@ -27,58 +27,91 @@
     <link rel="stylesheet" href="style.css"> </head>
 
 <body>
-    <script>
-        var lomakekentta = [];
-        $.getJSON("https://ohjelmistoprojekti-yksi.herokuapp.com/vastaus", function (data) {
-            var items = [];
-            var kysymys = data.kysymys;
-            $.each(data, function (key, d) {
-                if (d.tyyppi == "text") {
-                    items.push(d.kysymys + "<br><input type=" + d.tyyppi + " id=" + d.id + " ><br>");
-                    lomakekentta.push(d.id);
-                }
-                if (d.tyyppi == "radio" || d.tyyppi == "checkbox") {
-                    items.push("<br>" + d.kysymys + ":<br>");
-                    for (i = 0; i < d.value.length; i++) {
-                        items.push("<input type=" + d.tyyppi + " id=" + d.id + " name=" + d.id + " value=" + d.value[i] + " >" + d.value[i] + "<br>");
-                    }
-                    lomakekentta.push(d.id);
-                }
-                if (d.osio) {
-                    items.push(d.kysymys + "<br><id=" + d.id + "><br>");
-                    lomakekentta.push(d.id);
-                }
-            })
-            $("<div/>", {
-                html: items.join("")
-            }).appendTo("#lomake").show();
-        });
-        google.charts.load('current', {
-            'packages': ['corechart']
-        });
-        // Set a callback to run when the Google Visualization API is loaded.
-        google.charts.setOnLoadCallback(drawChart);
-        // Callback that creates and populates a data table,
-        // instantiates the pie chart, passes in the data and
-        // draws it.
-        function drawChart() {
-            var jsonData = $.ajax({
-                url: "https://ohjelmistoprojekti-yksi.herokuapp.com/vastaus"
-                , dataType: "json"
-                , async: false
-            }).responseText;
-            // Create the data table.
-            var data = new google.visualization.DataTable(jsonData);
-            // Set chart options
-            var options = {
-                'width': 550
-                , 'height': 400
-            };
-            // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-            chart.draw(data, options);
-        }
-    </script> <img src="helga_logo.png">
+<script>
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawKysymys3Chart);
+    google.charts.setOnLoadCallback(drawKysymys2Chart);
+    google.charts.setOnLoadCallback(drawKysymys6Chart);
+   
+
+      // Callback that creates and populates a data table,
+      // instantiates the pie chart, passes in the data and
+      // draws it.
+      function drawKysymys3Chart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Erittäin tyytyväinen', 3],
+          ['Tyytyväinen', 1],
+          ['Ei tyytyväinen eikä tyytymätön', 1],
+          ['Tyytymätön', 1],
+          ['Erittäin tyytymätön', 2]
+        ]);
+
+        // Set chart options
+        var piechart_options = {'width':600,
+                       'height':400,
+                       'colors': ['#18515e', '#007068', '#2f8c52', '#87a027', '#eba312']
+                      };
+
+        // Instantiate and draw our chart, passing in some options.
+        var piechart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        piechart.draw(data, piechart_options);
+      }
+        
+      function drawKysymys2Chart() {
+
+
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Kyllä', 7],
+          ['Ei', 3],
+        ]);
+
+        var piechart_options = {'width':600,
+                       'height':400,
+                      'colors': ['#18515e','#eba312']};
+
+        var piechart = new google.visualization.PieChart(document.getElementById('kysymys2_div'));
+        piechart.draw(data, piechart_options);
+      }
+          function drawKysymys6Chart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        data.addRows([
+          ['Erittäin tyytyväinen', 6],
+          ['Tyytyväinen', 1],
+          ['Ei tyytyväinen eikä tyytymätön', 1],
+          ['Tyytymätön', 3],
+          ['Erittäin tyytymätön', 2]
+        ]);
+
+        // Set chart options
+        var piechart_options = {'width':600,
+                       'height':400,
+                       'colors': ['#18515e', '#007068', '#2f8c52', '#87a027', '#eba312']
+                      };
+
+        // Instantiate and draw our chart, passing in some options.
+        var piechart = new 
+        google.visualization.PieChart(document.getElementById('chart6_div'));
+        piechart.draw(data, piechart_options);
+      }
+   
+    
+    </script> 
+    <img src="helga_logo.png">
     <div class="modal-wrap">
         <div class="modal-bodies">
             <div class="modal-body modal-body-step-1 is-showing">
@@ -89,19 +122,19 @@
                         <button>Millaisissa tilanteissa olet saanut tutorilta apua? <i class="fas fa-angle-down"></i></button>
                     </div>
                     <div id="nayta">
-                        <p>vastaus 1</p>
+                        <p>Tähän vois tulla pylväitä</p>
                     </div>
                     <div class="kysymys" id="2">
                         <button>Oletko kiinnostunut toimimaan Helgan tutorina? <i class="fas fa-angle-down"></i></button>
                     </div>
                     <div id="nayta2">
-                        <p>vastaus 2</p>
+                       <div class=chart id="kysymys2_div"></div>
                     </div>
                     <div class="kysymys" id="3">
                         <button>Kuinka tyytyväinen olit ryhmäytymiseen orientaatioviikolla? <i class="fas fa-angle-down"></i></button>
                     </div>
                     <div id="nayta3">
-                        <p>vastaus 3</p>
+                        <div id="chart_div" ></div>
                     </div>
                     <div class="kysymys" id="4">
                         <button>Miten tutorit auttoivat ryhmäytymisessä? <i class="fas fa-angle-down"></i></button>
@@ -113,18 +146,20 @@
                         <button>Millaiset opiskelijatapahtumat kiinnostavat sinua? <i class="fas fa-angle-down"></i></button>
                     </div>
                     <div id="nayta5">
-                        <p>vastaus 5</p>
+                        <p>tähän tulee pylväitä</p>
                     </div>
                     <div class="kysymys" id="6">
                         <button>Kuinka tyytyväinen olit tutorien järjestämään perehdytysprosessiin? <i class="fas fa-angle-down"></i></button>
                     </div>
                     <div id="nayta6">
-                        <p>vastaus 6</p>
+                        <div id="chart6_div"></div>
                     </div>
                     <div class="kysymys" id="7">
                         <button>Missä olisit tarvinnut enemmän tukea tutoreilta? <i class="fas fa-angle-down"></i></button>
                         <div id="nayta7">
-                            <p>vastaus 7</p>
+                            <p>Olisin tarvinnut enemmän apua kursseille ilmottautumisessa.</p>
+                            <p>Sain mielestäni ihan tarpeeksi apua tutoreilta.</p>
+                            
                         </div>
                     </div>
                 </div>
@@ -135,7 +170,7 @@
         $("#nayta").hide();
         var i = 0;
         $('#1').on('click', function () {
-            $('#nayta').toggle('slow');
+            $('#nayta').toggle('fast');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
             }
@@ -146,7 +181,7 @@
         $("#nayta2").hide();
         var i = 0;
         $('#2').on('click', function () {
-            $('#nayta2').toggle('slow');
+            $('#nayta2').toggle('fast');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
             }
@@ -157,7 +192,7 @@
         $("#nayta3").hide();
         var i = 0;
         $('#3').on('click', function () {
-            $('#nayta3').toggle('slow');
+            $('#nayta3').toggle('fast');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
             }
@@ -168,7 +203,7 @@
         $("#nayta4").hide();
         var i = 0;
         $('#4').on('click', function () {
-            $('#nayta4').toggle('slow');
+            $('#nayta4').toggle('fast');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
             }
@@ -179,7 +214,7 @@
         $("#nayta5").hide();
         var i = 0;
         $('#5').on('click', function () {
-            $('#nayta5').toggle('slow');
+            $('#nayta5').toggle('fast');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
             }
@@ -190,7 +225,7 @@
         $("#nayta6").hide();
         var i = 0;
         $('#6').on('click', function () {
-            $('#nayta6').toggle('slow');
+            $('#nayta6').toggle('fast');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
             }
@@ -201,7 +236,7 @@
         $("#nayta7").hide();
         var i = 0;
         $('#7').on('click', function () {
-            $('#nayta7').toggle('slow');
+            $('#nayta7').toggle('fast');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
             }
