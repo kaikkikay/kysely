@@ -157,8 +157,7 @@
                 html: items.join("")
             }).appendTo("#lomake3").show();
         });
-        //console.log(lomakekentta)
-        //console.log(kysymys)
+        
     </script> <img src="helga_logo.png">
     <div class="modal-wrap">
         <div class="modal-header"><span></span><span onclick="takaisin"></span><span></span><span></span><span></span></div>
@@ -241,9 +240,7 @@
     <script src="index.js"></script>
     <!-- JSON -->
     <script>
-        var lahetys1;
-        var lahetys2;
-        var lahetys3;
+        var lahetys;
 
         function laheta() {
             var tyyppi;
@@ -255,13 +252,13 @@
                 var checkbox = document.getElementsByName(lomakekentta[i]);
                 if (tyyppi == "text" || tyyppi == "textarea") {
                     vastaus = document.getElementById(lomakekentta[i]).value;
-                    lahetys1 = "{'vastausteksti':" + vastaus + ",'kysymys':{ 'kysymysid':" + lomakekentta[i] + ",'kysymysteksti':" + kysymys[i] + "}}";
+                    lahetys = "{'vastausteksti':" + vastaus + ",'kysymys':{ 'kysymysid':" + lomakekentta[i] + ",'kysymysteksti':" + kysymys[i] + "}}";
                 }
                 if (tyyppi == 'radio') {
                     for (var x = 0, length1 = radios.length; x < length1; x++) {
                         if (radios[x].checked) {
                             vastaus = radios[x].value;
-                            lahetys2 = "{'vastausteksti':" + vastaus + ",'kysymys':{ 'kysymysid':" + lomakekentta[i] + ",'kysymysteksti':" + kysymys[i] + "}}";
+                            lahetys = "{'vastausteksti':" + vastaus + ",'kysymys':{ 'kysymysid':" + lomakekentta[i] + ",'kysymysteksti':" + kysymys[i] + "}}";
                         }
                     }
                 }
@@ -269,12 +266,13 @@
                     for (var x = 0, length = checkbox.length; x < length; x++) {
                         if (checkbox[x].checked) {
                             vastaus = checkbox[x].value;
-                            lahetys3 = "{'vastausteksti':" + vastaus + ",'kysymys':{ 'kysymysid':" + lomakekentta[i] + ",'kysymysteksti':" + kysymys[i] + "}}";
+                            lahetys = "{'vastausteksti':" + vastaus + ",'kysymys':{ 'kysymysid':" + lomakekentta[i] + ",'kysymysteksti':" + kysymys[i] + "}}";
                         }
                     }
                 }
             }
-        /*var myJSON = JSON.stringify(lahetys1, lahetys2, lahetys3);
+            console.log(lahetys)
+        var myJSON = JSON.stringify(lahetys);
         $.ajax({
             type: 'POST'
             , url: 'https://ohjelmistoprojekti-yksi.herokuapp.com/vastaus'
@@ -283,19 +281,9 @@
             , success: function () {
                 alert('POST completed. Data:' + myJSON)
             }
-        })*/
-        var myJSON = JSON.stringify({'vastausteksti':'testi','kysymys':{ 'kysymysid':2,'kysymysteksti':'testi'}});
-        $.ajax({
-            type: "POST"
-            , url: 'https://ohjelmistoprojekti-yksi.herokuapp.com/vastaus'
-            , data: myJSON
-            , success: function () {
-                alert('jee')
-            }
-            ,contentType: 'application/json; charset=utf-8'
-            , dataType: 'json'
-        });
-            };
+        })
+        };
+
     </script>
 </body>
 
