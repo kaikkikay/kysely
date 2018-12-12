@@ -33,27 +33,21 @@
             var kysymysteksti = data.kysymysteksti;
             $.each(data, function (key, d) {
                 if (d.kysymysid == 2) {
-                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    items.push("<br>" + d.kysymysteksti + "<br>");
                     for (i = 0; i < d.vaihtoehdot.length; i++) {
-                        items.push("<input type=radio" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                        items.push("<input type='radio'" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
                     }
                     lomakekentta.push(d.kysymysid);
                     kysymys.push(d.kysymysteksti);
                 }
                 if (d.kysymysid == 7) {
-                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    items.push("<br>" + d.kysymysteksti + "<br>");
                     for (i = 0; i < d.vaihtoehdot.length; i++) {
-                        items.push("<input type=radio" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                        items.push("<input type='radio'" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
                     }
                     lomakekentta.push(d.kysymysid);
                     kysymys.push(d.kysymysteksti);
                 }
-                 if (d.kysymysid == 12) {
-                     items.push("<br>" + d.kysymysteksti + ":<br>");
-                     
-                     lomakekentta.push(d.kysymysid);
-                     kysymys.push(d.kysymysteksti);
-                 }
             })
             $("<div/>", {
                 html: items.join("")
@@ -65,25 +59,25 @@
             var kysymysteksti = data.kysymysteksti;
             $.each(data, function (key, d) {
                 if (d.kysymysid == 25) {
-                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    items.push("<br>" + d.kysymysteksti + "<br>");
                     for (i = 0; i < d.vaihtoehdot.length; i++) {
-                        items.push("<input type=radio" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                        items.push("<input type='radio'" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
                     }
                     lomakekentta.push(d.kysymysid);
                     kysymys.push(d.kysymysteksti);
                 }
                 if (d.kysymysid == 31) {
-                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    items.push("<br><br>" + d.kysymysteksti + "<br><br>");
                     for (i = 0; i < d.vaihtoehdot.length; i++) {
-                        items.push("<input type=checkbox" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                        items.push("<input type='checkbox'" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto + "<br>");
                     }
                     lomakekentta.push(d.kysymysid);
                     kysymys.push(d.kysymysteksti);
                 }
                 if (d.kysymysid == 40) {
-                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    items.push("<br>" + d.kysymysteksti + "<br>");
                     for (i = 0; i < d.vaihtoehdot.length; i++) {
-                        items.push("<input type=radio" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                        items.push("<input type='radio'" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
                     }
                     lomakekentta.push(d.kysymysid);
                     kysymys.push(d.kysymysteksti);
@@ -99,30 +93,30 @@
             var kysymysteksti = data.kysymysteksti;
             $.each(data, function (key, d) {
                 if (d.kysymysid == 43) {
-                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    items.push("<br>" + d.kysymysteksti + "<br>");
                     for (i = 0; i < d.vaihtoehdot.length; i++) {
-                        items.push("<input type=radio" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                        items.push("<input type='radio'" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto );
                     }
                     lomakekentta.push(d.kysymysid);
                     kysymys.push(d.kysymysteksti);
                 }
                 if (d.kysymysid == 50) {
-                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    items.push("<br>" + d.kysymysteksti + "<br>");
                     for (i = 0; i < d.vaihtoehdot.length; i++) {
-                        items.push("<input type=checkbox" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                        items.push("<input type='radio'" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
                     }
                     lomakekentta.push(d.kysymysid);
                     kysymys.push(d.kysymysteksti);
                 }
                 if (d.kysymysid == 49) {
-                    items.push("<br>" + d.kysymysteksti + "<br><input type=" + d.tyyppi + " id=" + d.kysymysid + " <br>");
+                    items.push("<br>" + d.kysymysteksti + "<input type='text'" + d.tyyppi + " id=" + d.kysymysid);
                     lomakekentta.push(d.kysymysid);
                     kysymys.push(d.kysymysteksti);
                 }
                 if (d.kysymysid == 56) {
-                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    items.push("<br>" + d.kysymysteksti + "<br><br>");
                     for (i = 0; i < d.vaihtoehdot.length; i++) {
-                        items.push("<input type=checkbox" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                        items.push("<input type='checkbox'" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto + "<br>");
                     }
                     lomakekentta.push(d.kysymysid);
                     kysymys.push(d.kysymysteksti);
@@ -138,14 +132,14 @@
             var kysymysteksti = data.kysymysteksti;
             $.each(data, function (key, d) {
                 if (d.kysymysid == 67) {
-                    items.push("<br><br>" + d.kysymysteksti + "<br><input type=" + d.tyyppi + " id=" + d.kysymysid + " ><br>");
+                    items.push("<br><br>" + d.kysymysteksti + "<br><input type='text'" + d.tyyppi + " id=" + d.kysymysid + " ><br>");
                     lomakekentta.push(d.kysymysid);
                     kysymys.push(d.kysymysteksti);
                 }
                 if (d.kysymysid == 50) {
-                    items.push("<br>" + d.kysymysteksti + ":<br>");
+                    items.push("<br>" + d.kysymysteksti + "<br>");
                     for (i = 0; i < d.vaihtoehdot.length; i++) {
-                        items.push("<input type=radio" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
+                        items.push("<input type='radio'" + " id=" + d.kysymysid + " name=" + d.kysymysid + " value=" + d.vaihtoehdot[i].vastausvaihtoehto + " <br>" + d.vaihtoehdot[i].vastausvaihtoehto);
                     }
                     lomakekentta.push(d.kysymysid);
                     kysymys.push(d.kysymysteksti);
@@ -174,7 +168,7 @@
                 <form onsubmit="laheta()" style="text-align: center">
                     <label>
                         <div id="lomake" data-user="osio2" data-list-size="5"></div>
-                        	<div>
+                        <!--	<div>
                        	 		<select>
   									<option value="Koulutusohjelma">Koulutusohjelma</option>
   									<option value="Finanssi- ja talousasiantuntijan koulutus, tradenomi">Finanssi- ja talousasiantuntijan koulutus, tradenomi</option>
@@ -191,7 +185,7 @@
   									<option value="Tietojenkäsittelyn koulutus, tradenomi">Tietojenkäsittelyn koulutus, tradenomi</option>	
   											
 						 		</select>
-                   			</div>
+                   			</div> -->
                     </label>
                     <br>
                     <br>
@@ -202,7 +196,7 @@
             </div>
             <div class="modal-body modal-body-step-3">
                 <div class="title">Yleistä tutortoiminnasta</div>
-                <form onsubmit="laheta()" style="text-align: center">
+                <form onsubmit="laheta()">
                     <label>
                         <div id="lomake1"></div>
                     </label>

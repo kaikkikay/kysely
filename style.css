@@ -55,17 +55,12 @@ input[type="email"]:focus {
 input[type="radio"] {
     display: inline;
 	margin: 10px;
+    padding: 50px;
 }
 
-radio {
-    display: inline;
-	padding: 30px;
-}
-
-input[type=checkbox] {
-     display: block;
+input[type="checkbox"] {
   position: relative;
-  padding-left: 5px;
+  padding: 5px;
   margin-bottom: 12px;
   text-align: left;
     font-size: 12px;
@@ -73,19 +68,10 @@ input[type=checkbox] {
 
 
 
-
-checkbox {
-  display: block;
-  position: relative;
-  padding-left: 5px;
-  margin-bottom: 12px;
-  text-align: left;
-    font-size: 12px;
-}
 
 label {
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
     font-size: 18px;
     color: #666;
     border-top: 1px solid #ddd;
