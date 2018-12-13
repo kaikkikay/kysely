@@ -39,7 +39,7 @@
                         <button>Millaisissa tilanteissa olet saanut tutorilta apua? <i class="fas fa-angle-down"></i></button>
                     </div>
                     <div id="nayta">
-                        <p>Tähän vois tulla pylväitä</p>
+                    <div class=chart id="chart1_div"></div>
                     </div>
                     <div class="kysymys" id="2">
                         <button>Oletko kiinnostunut toimimaan Helgan tutorina? <i class="fas fa-angle-down"></i></button>
@@ -51,32 +51,33 @@
                         <button>Kuinka tyytyväinen olit ryhmäytymiseen orientaatioviikolla? <i class="fas fa-angle-down"></i></button>
                     </div>
                     <div id="nayta3">
-                        <div id="chart_div" ></div>
+                        <div class="chart" id="chart_div" ></div>
                     </div>
                     <div class="kysymys" id="4">
                         <button>Miten tutorit auttoivat ryhmäytymisessä? <i class="fas fa-angle-down"></i></button>
                     </div>
                     <div id="nayta4">
-                        <p>vastaus 4</p>
+                        <p>Perustivat WhatsApp- ja Facebook-ryhmän.</p>
+                        <p>Kutsuivat erilaisiin tapahtumiin.</p>
                     </div>
                     <div class="kysymys" id="5">
                         <button>Millaiset opiskelijatapahtumat kiinnostavat sinua? <i class="fas fa-angle-down"></i></button>
                     </div>
                     <div id="nayta5">
-                        <p>tähän tulee pylväitä</p>
+                        <div class="chart" id="chart5_div"></div>
                     </div>
                     <div class="kysymys" id="6">
                         <button>Kuinka tyytyväinen olit tutorien järjestämään perehdytysprosessiin? <i class="fas fa-angle-down"></i></button>
                     </div>
                     <div id="nayta6">
-                        <div id="chart6_div"></div>
+                        <div class="chart" id="chart6_div"></div>
                     </div>
                     <div class="kysymys" id="7">
                         <button>Missä olisit tarvinnut enemmän tukea tutoreilta? <i class="fas fa-angle-down"></i></button>
                         <div id="nayta7">
                             <p>Olisin tarvinnut enemmän apua kursseille ilmottautumisessa.</p>
                             <p>Sain mielestäni ihan tarpeeksi apua tutoreilta.</p>
-                            
+                            <p>Excel-lukujärjestyksen käytössä.</p>
                         </div>
                     </div>
                 </div>
@@ -166,20 +167,50 @@
       google.charts.load('current', {'packages':['corechart']});
 
       // Set a callback to run when the Google Visualization API is loaded.
-      google.charts.setOnLoadCallback(drawKysymys3Chart);
+    google.charts.setOnLoadCallback(drawKysymys1Chart);
     google.charts.setOnLoadCallback(drawKysymys2Chart);
+    google.charts.setOnLoadCallback(drawKysymys3Chart);
+    google.charts.setOnLoadCallback(drawKysymys5Chart);
     google.charts.setOnLoadCallback(drawKysymys6Chart);
    
 
       // Callback that creates and populates a data table,
       // instantiates the pie chart, passes in the data and
       // draws it.
+         function drawKysymys1Chart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Vastaus');
+        data.addColumn('number', 'Määrä');
+        data.addRows([
+            ['Apua kursseille ilmottautumiseen', 14],
+            ['Tietoa opiskelijatapahtumista', 7],
+            ['Tietoa järjestötoiminnasta', 6],
+            ['Tietoa koulun palveluista', 4],
+            ['Opiskelijoiden ryhmäytyminen', 4],
+            ['HOPS-klinikat', 2],
+            ['Callidus-tutorointi', 2],
+            ['Vaihto-opiskelu', 3]
+            ]);
+
+        // Set chart options
+        var piechart_options = {'width':600,
+                       'height':400,
+                       'colors': ['#18515e', '#196D65', '#1B7D58','#2f8c52', '#39AC1A','#87a027', '#DBD115','#eba312'],
+                      };
+
+        // Instantiate and draw our chart, passing in some options.
+        var piechart = new google.visualization.PieChart(document.getElementById('chart1_div'));
+        piechart.draw(data, piechart_options);
+      }
+        
       function drawKysymys3Chart() {
 
         // Create the data table.
         var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
+        data.addColumn('string', 'Vastaus');
+        data.addColumn('number', 'Määrä');
         data.addRows([
           ['Erittäin tyytyväinen', 3],
           ['Tyytyväinen', 1],
@@ -203,8 +234,8 @@
 
 
         var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
+        data.addColumn('string', 'Vastaus');
+        data.addColumn('number', 'Määrä');
         data.addRows([
           ['Kyllä', 7],
           ['Ei', 3],
@@ -217,12 +248,13 @@
         var piechart = new google.visualization.PieChart(document.getElementById('kysymys2_div'));
         piechart.draw(data, piechart_options);
       }
-          function drawKysymys6Chart() {
+         
+        function drawKysymys6Chart() {
 
         // Create the data table.
         var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Topping');
-        data.addColumn('number', 'Slices');
+        data.addColumn('string', 'Vastaus');
+        data.addColumn('number', 'Määrä');
         data.addRows([
           ['Erittäin tyytyväinen', 6],
           ['Tyytyväinen', 1],
@@ -240,6 +272,36 @@
         // Instantiate and draw our chart, passing in some options.
         var piechart = new 
         google.visualization.PieChart(document.getElementById('chart6_div'));
+        piechart.draw(data, piechart_options);
+      }
+   
+        function drawKysymys5Chart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Vastaus');
+        data.addColumn('number', 'Määrä');
+        data.addRows([
+          ['Ekskursiot', 6],
+          ['Liikuntatapahtumat', 10],
+          ['Opiskelijabileet ', 7],
+          ['Opiskelijaristeilyt', 3],
+          ['Vuosijuhlat', 5],
+        ['CV-pajat ja uraneuvonta', 8],
+            ['Järjestötoiminta', 5],
+            ['Kerhotoiminta', 3],
+            ['Speksi', 2]
+        ]);
+
+        // Set chart options
+        var piechart_options = {'width':600,
+                       'height':400,
+                       'colors': ['#18515e', '#196D65', '#1B7D58','#2f8c52', '#39AC1A','#87a027', '#A8B224','#DBD115','#eba312']
+                      };
+
+        // Instantiate and draw our chart, passing in some options.
+        var piechart = new 
+        google.visualization.PieChart(document.getElementById('chart5_div'));
         piechart.draw(data, piechart_options);
       }
    

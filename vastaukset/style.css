@@ -187,13 +187,13 @@ input[type=submit]:hover,
 
 
 i {
-    color: #666;
     font-size: 20px;
     position: absolute;
     right: 45px;
 }
-i:hover {
-    color: white;
+
+.chart {
+   padding: 5px;
 }
 
 .animate-out {
