@@ -21,6 +21,7 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+	
     <link rel="stylesheet" href="style.css"> </head>
 
 <body>
@@ -247,9 +248,11 @@
         </div>
     </div>
     <script src="index.js"></script>
+	
     <!-- JSON -->
     <script>
         var lahetys;
+		var lahetys1;
 
         function laheta() {
             var tyyppi;
@@ -282,29 +285,33 @@
 				
 				if (tyyppi == "text" || tyyppi == "textarea") {
                     vastaus = document.getElementById(lomakekentta[i]).value;
-                    lahetys = '{"vastausteksti":' +'"' + vastaus + '"' + ',"kysymys":{ "kysymysid":' + '"' + lomakekentta[i] + '"'+',"kysymysteksti":' + '"' + kysymys[i]+'"' + "}}";
+                    lahetys1 = '{"vastausteksti":' +'"' + vastaus + '"' + ',"kysymys":{ "kysymysid":' + '"' + lomakekentta[i] + '"'+',"kysymysteksti":' + '"' + kysymys[i]+'"' + "}}";
 					
-					console.log(lahetys)
+					console.log(lahetys1)
 					
-					var myJSON = JSON.stringify(lahetys);
+	
+                }
+            }
+           
+        
+       
+		
+						var myJSON = JSON.stringify(lahetys1);
         $.ajax({
             type: 'POST'
             , url: 'https://ohjelmistoprojekti-yksi.herokuapp.com/save'
-            , data: myJSON
-            , dataType: 'json'
+            , data: 'myJSON'
+			, dataType: 'json'
+			, contentType: 'application/json'
             , success: function () {
                 alert('POST completed. Data:' + myJSON)
 				
             }
 			, error: function () {
-				alert("Ei toimi saatana")
+				alert("Melkein toimii :)")
 			}
         })
-                }
-            }
-            console.log(lahetys)
-        
-        };
+			 };
 
     </script>
 </body>
