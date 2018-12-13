@@ -24,7 +24,8 @@
     <!--Load the AJAX API-->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <link rel="stylesheet" href="style.css"> </head>
+    <link rel="stylesheet" href="style.css">
+</head>
 
 <body>
 
@@ -39,19 +40,19 @@
                         <button>Millaisissa tilanteissa olet saanut tutorilta apua? <i class="fas fa-angle-down"></i></button>
                     </div>
                     <div id="nayta">
-                    <div class=chart id="chart1_div"></div>
+                        <div class=chart id="chart1_div"></div>
                     </div>
                     <div class="kysymys" id="2">
                         <button>Oletko kiinnostunut toimimaan Helgan tutorina? <i class="fas fa-angle-down"></i></button>
                     </div>
                     <div id="nayta2">
-                       <div class=chart id="kysymys2_div"></div>
+                        <div class=chart id="kysymys2_div"></div>
                     </div>
                     <div class="kysymys" id="3">
                         <button>Kuinka tyytyväinen olit ryhmäytymiseen orientaatioviikolla? <i class="fas fa-angle-down"></i></button>
                     </div>
                     <div id="nayta3">
-                        <div class="chart" id="chart_div" ></div>
+                        <div class="chart" id="chart_div"></div>
                     </div>
                     <div class="kysymys" id="4">
                         <button>Miten tutorit auttoivat ryhmäytymisessä? <i class="fas fa-angle-down"></i></button>
@@ -87,226 +88,224 @@
     <script>
         $("#nayta").hide();
         var i = 0;
-        $('#1').on('click', function () {
+        $('#1').on('click', function() {
             $('#nayta').toggle('fast');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
-            }
-            else {
+            } else {
                 $(this).find('i').toggleClass('fa-angle-down');
             }
         });
         $("#nayta2").hide();
         var i = 0;
-        $('#2').on('click', function () {
+        $('#2').on('click', function() {
             $('#nayta2').toggle('fast');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
-            }
-            else {
+            } else {
                 $(this).find('i').toggleClass('fa-angle-down');
             }
         });
         $("#nayta3").hide();
         var i = 0;
-        $('#3').on('click', function () {
+        $('#3').on('click', function() {
             $('#nayta3').toggle('fast');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
-            }
-            else {
+            } else {
                 $(this).find('i').toggleClass('fa-angle-down');
             }
         });
         $("#nayta4").hide();
         var i = 0;
-        $('#4').on('click', function () {
+        $('#4').on('click', function() {
             $('#nayta4').toggle('fast');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
-            }
-            else {
+            } else {
                 $(this).find('i').toggleClass('fa-angle-down');
             }
         });
         $("#nayta5").hide();
         var i = 0;
-        $('#5').on('click', function () {
+        $('#5').on('click', function() {
             $('#nayta5').toggle('fast');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
-            }
-            else {
+            } else {
                 $(this).find('i').toggleClass('fa-angle-down');
             }
         });
         $("#nayta6").hide();
         var i = 0;
-        $('#6').on('click', function () {
+        $('#6').on('click', function() {
             $('#nayta6').toggle('fast');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
-            }
-            else {
+            } else {
                 $(this).find('i').toggleClass('fa-angle-down');
             }
         });
         $("#nayta7").hide();
         var i = 0;
-        $('#7').on('click', function () {
+        $('#7').on('click', function() {
             $('#nayta7').toggle('fast');
             if (i++ % 2 == 0) {
                 $(this).find('i').toggleClass('fa-angle-up');
-            }
-            else {
+            } else {
                 $(this).find('i').toggleClass('fa-angle-down');
             }
         });
-        
-      // Load the Visualization API and the corechart package.
-      google.charts.load('current', {'packages':['corechart']});
 
-      // Set a callback to run when the Google Visualization API is loaded.
-    google.charts.setOnLoadCallback(drawKysymys1Chart);
-    google.charts.setOnLoadCallback(drawKysymys2Chart);
-    google.charts.setOnLoadCallback(drawKysymys3Chart);
-    google.charts.setOnLoadCallback(drawKysymys5Chart);
-    google.charts.setOnLoadCallback(drawKysymys6Chart);
-   
+        // Load the Visualization API and the corechart package.
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
 
-      // Callback that creates and populates a data table,
-      // instantiates the pie chart, passes in the data and
-      // draws it.
-         function drawKysymys1Chart() {
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.charts.setOnLoadCallback(drawKysymys1Chart);
+        google.charts.setOnLoadCallback(drawKysymys2Chart);
+        google.charts.setOnLoadCallback(drawKysymys3Chart);
+        google.charts.setOnLoadCallback(drawKysymys5Chart);
+        google.charts.setOnLoadCallback(drawKysymys6Chart);
 
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Vastaus');
-        data.addColumn('number', 'Määrä');
-        data.addRows([
-            ['Apua kursseille ilmottautumiseen', 14],
-            ['Tietoa opiskelijatapahtumista', 7],
-            ['Tietoa järjestötoiminnasta', 6],
-            ['Tietoa koulun palveluista', 4],
-            ['Opiskelijoiden ryhmäytyminen', 4],
-            ['HOPS-klinikat', 2],
-            ['Callidus-tutorointi', 2],
-            ['Vaihto-opiskelu', 3]
+
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawKysymys1Chart() {
+
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Vastaus');
+            data.addColumn('number', 'Määrä');
+            data.addRows([
+                ['Apua kursseille ilmottautumiseen', 14],
+                ['Tietoa opiskelijatapahtumista', 7],
+                ['Tietoa järjestötoiminnasta', 6],
+                ['Tietoa koulun palveluista', 4],
+                ['Opiskelijoiden ryhmäytyminen', 4],
+                ['HOPS-klinikat', 2],
+                ['Callidus-tutorointi', 2],
+                ['Vaihto-opiskelu', 3]
             ]);
 
-        // Set chart options
-        var piechart_options = {'width':600,
-                       'height':400,
-                       'colors': ['#18515e', '#196D65', '#1B7D58','#2f8c52', '#39AC1A','#87a027', '#DBD115','#eba312'],
-                      };
+            // Set chart options
+            var piechart_options = {
+                'width': 600,
+                'height': 400,
+                'colors': ['#18515e', '#196D65', '#1B7D58', '#2f8c52', '#39AC1A', '#87a027', '#DBD115', '#eba312'],
+            };
 
-        // Instantiate and draw our chart, passing in some options.
-        var piechart = new google.visualization.PieChart(document.getElementById('chart1_div'));
-        piechart.draw(data, piechart_options);
-      }
-        
-      function drawKysymys3Chart() {
+            // Instantiate and draw our chart, passing in some options.
+            var piechart = new google.visualization.PieChart(document.getElementById('chart1_div'));
+            piechart.draw(data, piechart_options);
+        }
 
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Vastaus');
-        data.addColumn('number', 'Määrä');
-        data.addRows([
-          ['Erittäin tyytyväinen', 3],
-          ['Tyytyväinen', 1],
-          ['Ei tyytyväinen eikä tyytymätön', 1],
-          ['Tyytymätön', 1],
-          ['Erittäin tyytymätön', 2]
-        ]);
+        function drawKysymys3Chart() {
 
-        // Set chart options
-        var piechart_options = {'width':600,
-                       'height':400,
-                       'colors': ['#18515e', '#007068', '#2f8c52', '#87a027', '#eba312']
-                      };
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Vastaus');
+            data.addColumn('number', 'Määrä');
+            data.addRows([
+                ['Erittäin tyytyväinen', 3],
+                ['Tyytyväinen', 1],
+                ['Ei tyytyväinen eikä tyytymätön', 1],
+                ['Tyytymätön', 1],
+                ['Erittäin tyytymätön', 2]
+            ]);
 
-        // Instantiate and draw our chart, passing in some options.
-        var piechart = new google.visualization.PieChart(document.getElementById('chart_div'));
-        piechart.draw(data, piechart_options);
-      }
-        
-      function drawKysymys2Chart() {
+            // Set chart options
+            var piechart_options = {
+                'width': 600,
+                'height': 400,
+                'colors': ['#18515e', '#007068', '#2f8c52', '#87a027', '#eba312']
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var piechart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            piechart.draw(data, piechart_options);
+        }
+
+        function drawKysymys2Chart() {
 
 
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Vastaus');
-        data.addColumn('number', 'Määrä');
-        data.addRows([
-          ['Kyllä', 7],
-          ['Ei', 3],
-        ]);
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Vastaus');
+            data.addColumn('number', 'Määrä');
+            data.addRows([
+                ['Kyllä', 7],
+                ['Ei', 3],
+            ]);
 
-        var piechart_options = {'width':600,
-                       'height':400,
-                      'colors': ['#18515e','#eba312']};
+            var piechart_options = {
+                'width': 600,
+                'height': 400,
+                'colors': ['#18515e', '#eba312']
+            };
 
-        var piechart = new google.visualization.PieChart(document.getElementById('kysymys2_div'));
-        piechart.draw(data, piechart_options);
-      }
-         
+            var piechart = new google.visualization.PieChart(document.getElementById('kysymys2_div'));
+            piechart.draw(data, piechart_options);
+        }
+
         function drawKysymys6Chart() {
 
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Vastaus');
-        data.addColumn('number', 'Määrä');
-        data.addRows([
-          ['Erittäin tyytyväinen', 6],
-          ['Tyytyväinen', 1],
-          ['Ei tyytyväinen eikä tyytymätön', 1],
-          ['Tyytymätön', 3],
-          ['Erittäin tyytymätön', 2]
-        ]);
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Vastaus');
+            data.addColumn('number', 'Määrä');
+            data.addRows([
+                ['Erittäin tyytyväinen', 6],
+                ['Tyytyväinen', 1],
+                ['Ei tyytyväinen eikä tyytymätön', 1],
+                ['Tyytymätön', 3],
+                ['Erittäin tyytymätön', 2]
+            ]);
 
-        // Set chart options
-        var piechart_options = {'width':600,
-                       'height':400,
-                       'colors': ['#18515e', '#007068', '#2f8c52', '#87a027', '#eba312']
-                      };
+            // Set chart options
+            var piechart_options = {
+                'width': 600,
+                'height': 400,
+                'colors': ['#18515e', '#007068', '#2f8c52', '#87a027', '#eba312']
+            };
 
-        // Instantiate and draw our chart, passing in some options.
-        var piechart = new 
-        google.visualization.PieChart(document.getElementById('chart6_div'));
-        piechart.draw(data, piechart_options);
-      }
-   
+            // Instantiate and draw our chart, passing in some options.
+            var piechart = new
+            google.visualization.PieChart(document.getElementById('chart6_div'));
+            piechart.draw(data, piechart_options);
+        }
+
         function drawKysymys5Chart() {
 
-        // Create the data table.
-        var data = new google.visualization.DataTable();
-        data.addColumn('string', 'Vastaus');
-        data.addColumn('number', 'Määrä');
-        data.addRows([
-          ['Ekskursiot', 6],
-          ['Liikuntatapahtumat', 10],
-          ['Opiskelijabileet ', 7],
-          ['Opiskelijaristeilyt', 3],
-          ['Vuosijuhlat', 5],
-        ['CV-pajat ja uraneuvonta', 8],
-            ['Järjestötoiminta', 5],
-            ['Kerhotoiminta', 3],
-            ['Speksi', 2]
-        ]);
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Vastaus');
+            data.addColumn('number', 'Määrä');
+            data.addRows([
+                ['Ekskursiot', 6],
+                ['Liikuntatapahtumat', 10],
+                ['Opiskelijabileet ', 7],
+                ['Opiskelijaristeilyt', 3],
+                ['Vuosijuhlat', 5],
+                ['CV-pajat ja uraneuvonta', 8],
+                ['Järjestötoiminta', 5],
+                ['Kerhotoiminta', 3],
+                ['Speksi', 2]
+            ]);
 
-        // Set chart options
-        var piechart_options = {'width':600,
-                       'height':400,
-                       'colors': ['#18515e', '#196D65', '#1B7D58','#2f8c52', '#39AC1A','#87a027', '#A8B224','#DBD115','#eba312']
-                      };
+            // Set chart options
+            var piechart_options = {
+                'width': 600,
+                'height': 400,
+                'colors': ['#18515e', '#196D65', '#1B7D58', '#2f8c52', '#39AC1A', '#87a027', '#A8B224', '#DBD115', '#eba312']
+            };
 
-        // Instantiate and draw our chart, passing in some options.
-        var piechart = new 
-        google.visualization.PieChart(document.getElementById('chart5_div'));
-        piechart.draw(data, piechart_options);
-      }
-   
-    
-    
+            // Instantiate and draw our chart, passing in some options.
+            var piechart = new
+            google.visualization.PieChart(document.getElementById('chart5_div'));
+            piechart.draw(data, piechart_options);
+        }
     </script>
 </body>
 

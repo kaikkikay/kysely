@@ -54,20 +54,17 @@ input[type="email"]:focus {
 
 input[type="radio"] {
     display: inline;
-	margin: 10px;
+    margin: 10px;
     padding: 50px;
 }
 
 input[type="checkbox"] {
-  position: relative;
-  padding: 5px;
-  margin-bottom: 12px;
-  text-align: left;
+    position: relative;
+    padding: 5px;
+    margin-bottom: 12px;
+    text-align: left;
     font-size: 12px;
 }
-
-
-
 
 label {
     margin-bottom: 20px;
@@ -190,18 +187,19 @@ input[type=submit]:hover,
     cursor: pointer;
     width: 100%;
 }
+
 .kysymys button:hover {
     background: #1d6372;
     border-radius: 3px;
     color: white;
 }
 
- i {
+i {
     color: #666;
     font-size: 20px;
     position: absolute;
     right: 44px;
-} 
+}
 
 .animate-out {
     -webkit-animation: out 600ms ease-in-out forwards;
